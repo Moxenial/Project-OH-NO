@@ -8,4 +8,4 @@ To do:
 
 Ideas:
 
-> Interface for hardening UNO rules?
+* Interface for hardening UNO rules?
