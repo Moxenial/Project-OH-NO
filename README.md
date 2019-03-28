@@ -2,9 +2,9 @@
 
 To do:
 
-> Implement functioning text interface
-> Methods for each class
-> Finalize code structure
+* Implement functioning text interface
+* Methods for each class
+* Finalize code structure
 
 Ideas:
 
