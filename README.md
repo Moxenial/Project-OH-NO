@@ -4,7 +4,7 @@ To do:
 
 * Implement functioning text interface
 * Methods for each class
-* "shuffleDeck" method
+* "shuffleDeck" method in Board class
 * Finalize code structure
 
 Ideas:
