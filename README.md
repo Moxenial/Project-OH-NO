@@ -1,9 +1,5 @@
 # Project-OH-NO
 
-Changelog:
-* 3/28
-  * Branches kyle-changes, nate-changes, karsten-changes created.
-
 To do:
 
 * Implement functioning text interface

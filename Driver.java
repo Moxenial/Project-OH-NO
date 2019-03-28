@@ -1,15 +1,8 @@
 import java.util.ArrayList;
-/**
- * 
- * @author Moxenial
- *
- */
+
 public class Driver {
 
-	private static ArrayList<Card> deck;
-	private Card currentCard;
-	private ArrayList<Player> players;
-	private static Board board;
+	private ArrayList<Player> players; //make this an array initialized at gameStart conditions?
 	private int currentPlayer;
 	private int numberOfPlayers;
 	private boolean isPlayOrderClockwise;
@@ -19,8 +12,7 @@ public class Driver {
 	private boolean unoDeclared;
 	
 	public void drawCard(Player player) {
-		player.addCard(deck.get(0));
-		deck.remove(0);
+		
 	}
 	public void checkCard() {
 		//if(currentCard.getColor == 0) //wild card
@@ -55,6 +47,19 @@ public class Driver {
 	}
 	
 	public static void main(String[] args){
-		deck = board.generateRandomDeck();
+		Board board = new Board();
+		board.generateStandardDeck();
+		
+		System.out.println("STANDARD DECK SIZE: " + board.getDeck().size());
+		for(int i = 0; i < board.getDeck().size(); ++i) {
+			System.out.println(board.getDeck().get(i).toString());
+		}
+		
+		board.generateRandomDeck();
+		
+		System.out.println("RANDOM DECK SIZE: " + board.getDeck().size());
+		for(int i = 0; i < board.getDeck().size(); ++i) {
+			System.out.println(board.getDeck().get(i).toString());
+		}
 	}
 }
