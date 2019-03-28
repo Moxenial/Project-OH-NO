@@ -14,3 +14,4 @@ To do:
 Ideas:
 
 * Interface for hardening UNO rules?
+* Dedicated class for game rules?
