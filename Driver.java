@@ -8,6 +8,7 @@ public class Driver {
 
 	private static ArrayList<Card> deck;
 	private Card currentCard;
+	private ArrayList<Card> discardPile;
 	private ArrayList<Player> players;
 	private static Board board;
 	private int currentPlayer;
