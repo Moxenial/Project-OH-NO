@@ -27,4 +27,14 @@ public class Board {
 		}
 		return deck;
 	}
+	public void reshuffleDeck()
+	{
+		//deck == discardPile;
+		//deck.shuffle();
+		//Card topCard = discardPile.get(0);
+		//discardPile.clear();
+		//discardPile.add(topCard);
+		
+		//maybe make topCard and discardPile their own separate entities?
+	}
 }
