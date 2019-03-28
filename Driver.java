@@ -20,6 +20,7 @@ public class Driver {
 	
 	public void drawCard(Player player) {
 		player.addCard(deck.get(0));
+		deck.remove(0);
 	}
 	public void checkCard() {
 		//if(currentCard.getColor == 0) //wild card
