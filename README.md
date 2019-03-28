@@ -8,6 +8,7 @@ Changelog:
     * Restructured Board class to contain the deck ArrayList.
     * Implemented generateStandardDeck and generateRandomDeck methods.
     * Updated Driver to test new methods.
+    * Added DefaultRules interface, migrated static int DECKSIZE to new interface.
 
 To do:
 
