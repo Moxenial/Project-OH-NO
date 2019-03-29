@@ -2,7 +2,7 @@
 
 Changelog:
 * 3/28: Branches kyle-changes, nate-changes, karsten-changes created.
-
+* 3/29 Added Menu and Actions Files to Nates branch, continued work to establish working inferface and actions set.
 To do:
 
 * Implement functioning text interface
