@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 
 public class Driver {
-
+	
+	
+	
 	private ArrayList<Player> players; //make this an array initialized at gameStart conditions?
 	private int currentPlayer;
 	private int numberOfPlayers;
@@ -47,6 +49,9 @@ public class Driver {
 	}
 	
 	public static void main(String[] args){
+		OhNoGUI w = new OhNoGUI();
+		w.setVisible(true);
+		
 		Board board = new Board();
 		board.generateStandardDeck();
 		

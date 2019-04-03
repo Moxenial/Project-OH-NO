@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class OhNoGUI extends JFrame {
+public class OhNoGUI extends JFrame{
 
 	// practice gui build #1
 	public static final int WIDTH = 600;
@@ -19,24 +19,53 @@ public class OhNoGUI extends JFrame {
 		
 		setLayout(new BorderLayout());
 		
-		// doesnt do anything yet, prep for home menu button alignment
-		setLayout(new GridLayout(ROWS, COLUMNS));
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
 		
 		// Button to start the game
 		JButton playButton = new JButton("Play Game");
 		playButton.addActionListener(new OhNoPlayListener());
-		add(playButton);
+		buttonPanel.add(playButton);
 		
 		// Button to bring up rules
 		JButton rulesButton = new JButton("View Rules");
 		rulesButton.addActionListener(new OhNoRulesListener());
-		add(rulesButton);
-		
+		buttonPanel.add(rulesButton);
 		
 		// Button to quit out of GUI/Game
 		JButton exitButton = new JButton("Quit Game");
 		exitButton.addActionListener(new OhNoQuitListener());
-		add(exitButton);
+		buttonPanel.add(exitButton);
+		
+		add(buttonPanel, BorderLayout.SOUTH);
+		
+		// Card Display Home Menu
+
+		JPanel homeDisplay = new JPanel();
+		homeDisplay.setLayout(new GridLayout(1,4));
+		
+		JPanel blueCard = new JPanel();
+		blueCard.setBackground(Color.BLUE);
+		homeDisplay.add(blueCard);
+		
+		JPanel greenCard = new JPanel();
+		greenCard.setBackground(Color.GREEN);
+		homeDisplay.add(greenCard);
+		
+		JPanel yellowCard = new JPanel();
+		yellowCard.setBackground(Color.YELLOW);
+		homeDisplay.add(yellowCard);
+		
+		JPanel redCard = new JPanel();
+		redCard.setBackground(Color.RED);
+		homeDisplay.add(redCard);
+		
+		add(homeDisplay, BorderLayout.CENTER);
+		
+		
+		
+		
+		
 		
 	}
 	
@@ -53,6 +82,7 @@ public class OhNoGUI extends JFrame {
 		public void actionPerformed(ActionEvent p)
 		{
 			// Prints to console for now..
+			// Needs to set players to two and initiate the shuffle/deal for two players
 			System.out.println("Playing Game");
 		}
 	}
@@ -61,7 +91,7 @@ public class OhNoGUI extends JFrame {
 		public void actionPerformed(ActionEvent e)
 		{
 			// Goes to rulebook
-			// This is the action performed
+			// Create call to open seperate window that displays rules and uses WindowListeners to exit pg1027
 		}
 	}
 	
