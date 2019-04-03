@@ -47,10 +47,6 @@ public class Driver {
 	}
 	
 	public static void main(String[] args){
-		
-		OhNoGUI game = new OhNoGUI();
-		game.setVisible(true);
-		
 		Board board = new Board();
 		board.generateStandardDeck();
 		
