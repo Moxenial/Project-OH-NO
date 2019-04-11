@@ -130,8 +130,50 @@ public class OhNoRulesListener implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		// Goes to rulebook
-		// This is the action performed
+		RuleBook ruleDisplay = new RuleBook();
+		ruleDisplay.setVisible(true);
 	}
+}
+
+public class RuleBook extends JFrame
+{
+	public static final int WIDTH = 600;
+	public static final int HEIGHT = 300;
+	public RuleBook(){
+	
+
+		
+		super();
+		setSize(WIDTH, HEIGHT);
+		setTitle("Rulebook!");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setLayout(new BorderLayout());
+		
+		JPanel rulesPanel = new JPanel();
+		JLabel title = new JLabel("Here are the rules for OH-NO!");
+		JLabel rule1 = new JLabel("Here is rule 1");
+		JLabel rule2 = new JLabel("here is rule 2");
+		JLabel rule3 = new JLabel("here is rule 3");
+		JLabel rule4 = new JLabel("here is rule 4");
+		JLabel rule5 = new JLabel("here is rule 5");
+		
+		
+		rulesPanel.setLayout(new GridLayout(6, 1));
+		rulesPanel.add(title);
+		rulesPanel.add(rule1);
+		rulesPanel.add(rule2);
+		rulesPanel.add(rule3);
+		rulesPanel.add(rule4);
+		rulesPanel.add(rule5);
+		
+		add(rulesPanel, BorderLayout.CENTER);
+		
+		
+	}
+	
+	
+	
 }
 
 }
