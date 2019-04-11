@@ -164,7 +164,10 @@ public class Board implements DefaultRules{
 		}
 		shuffle();
 	}
-	
+	public void drawCard(Player player) {
+		deck.get(0);
+  }
+  
 	//default contructor
 	public Board() {
 		this.deck = new ArrayList<Card>();

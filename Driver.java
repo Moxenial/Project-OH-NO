@@ -11,9 +11,6 @@ public class Driver {
 	private boolean winner;
 	private boolean unoDeclared;
 	
-	public void drawCard(Player player) {
-		
-	}
 	public void checkCard() {
 		//if(currentCard.getColor == 0) //wild card
 	}
@@ -66,3 +63,14 @@ public class Driver {
 		}*/
 	}
 }
+		Player player1 = new Player();
+		board.drawCard(player1);
+		System.out.println(player1.toString());
+		
+		
+		//board.generateRandomDeck();
+		//System.out.println("RANDOM DECK SIZE: " + board.getDeck().size());
+		//for(int i = 0; i < board.getDeck().size(); ++i) {
+		//	System.out.println(board.getDeck().get(i).toString());
+		}
+	}

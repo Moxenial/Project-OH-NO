@@ -57,6 +57,7 @@ public class Card {
 		this.color = 0;
 		this.value = 0;
 	}
+	
 	public Card(int color, int value) {
 		this.color = color;
 		this.value = value;
