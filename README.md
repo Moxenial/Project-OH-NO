@@ -1,7 +1,8 @@
 # Project-OH-NO
 
-*Project: OH-NO is a wholesale Java reproduction of the popular card game UNO. It will feature a full Graphical User Interface, standard and random deck options, as well as both Player vs. Player and Player vs. AI options. It will allow for an unlimited number of players (minimum 3) to play against each other on one computer.*
-
+Changelog:
+* 3/28: Branches kyle-changes, nate-changes, karsten-changes created.
+* 3/29 Added Menu and Actions Files to Nates branch, continued work to establish working inferface and actions set.
 To do:
 
 * Implement functioning text interface
@@ -12,4 +13,3 @@ To do:
 Ideas:
 
 * Interface for hardening UNO rules?
-* Dedicated class for game rules?
