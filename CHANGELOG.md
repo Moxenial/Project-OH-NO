@@ -1,5 +1,9 @@
 # Changelog
 
+* 4/11
+ * nate-changes (merged):
+   * Basic GUI interface created.
+
 * 3/28
   * Branches kyle-changes, nate-changes, karsten-changes created.
   
