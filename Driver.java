@@ -50,6 +50,9 @@ public class Driver {
 		Board board = new Board();
 		board.generateStandardDeck();
 		
+		OhNoGUI game = new OhNoGUI();
+		game.setVisible(true);
+		/*
 		System.out.println("STANDARD DECK SIZE: " + board.getDeck().size());
 		for(int i = 0; i < board.getDeck().size(); ++i) {
 			System.out.println(board.getDeck().get(i).toString());
@@ -60,6 +63,6 @@ public class Driver {
 		System.out.println("RANDOM DECK SIZE: " + board.getDeck().size());
 		for(int i = 0; i < board.getDeck().size(); ++i) {
 			System.out.println(board.getDeck().get(i).toString());
-		}
+		}*/
 	}
 }
