@@ -46,24 +46,6 @@ public class Driver {
 		game.setVisible(true);
 		
 
-
-		//Board board = new Board();
-		//board.generateStandardDeck();
-		
-		
-		// TEMP DISPLAY OF CARD DECKS IN CONSOLE
-		//System.out.println("STANDARD DECK SIZE: " + board.getDeck().size());
-		//for(int i = 0; i < board.getDeck().size(); ++i) {
-		//	System.out.println(board.getDeck().get(i).toString());
-		//}
-		
-		//board.generateRandomDeck();
-		
-		//System.out.println("RANDOM DECK SIZE: " + board.getDeck().size());
-		//for(int i = 0; i < board.getDeck().size(); ++i) {
-		//	System.out.println(board.getDeck().get(i).toString());
-		
-			
 		// Starts a game between two people
 		int numOfPlayers = 2;
 		Player playerInfo = new Player();
