@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Driver {
-	
-	
-	
+
+
 	private ArrayList<Player> players; //make this an array initialized at gameStart conditions?
+	private Player playerInfo = new Player();
 	private int currentPlayer;
 	private int numberOfPlayers;
 	private boolean isPlayOrderClockwise;
@@ -13,23 +13,14 @@ public class Driver {
 	private boolean winner;
 	private boolean unoDeclared;
 	
-	public void drawCard(Player player) {
-		
-	}
+	
+	
+	
 	public void checkCard() {
 		//if(currentCard.getColor == 0) //wild card
 	}
-	public void playCard() {
-		
-	}
-	public void checkHandSize() {
-		if(!unoDeclared) {
-			drawCard(players.get(currentPlayer));
-			drawCard(players.get(currentPlayer));
-			advanceTurn();
-		}
-		else {}
-	}
+
+
 	public void advanceTurn() {
 		if(isPlayOrderClockwise) {
 			if(currentPlayer > numberOfPlayers)
@@ -49,22 +40,37 @@ public class Driver {
 	}
 	
 	public static void main(String[] args){
-		OhNoGUI w = new OhNoGUI();
-		w.setVisible(true);
 		
-		Board board = new Board();
-		board.generateStandardDeck();
+		// Sets the GUI as active
+		OhNoGUI game = new OhNoGUI();
+		game.setVisible(true);
 		
-		System.out.println("STANDARD DECK SIZE: " + board.getDeck().size());
-		for(int i = 0; i < board.getDeck().size(); ++i) {
-			System.out.println(board.getDeck().get(i).toString());
-		}
+
+
+		//Board board = new Board();
+		//board.generateStandardDeck();
 		
-		board.generateRandomDeck();
 		
-		System.out.println("RANDOM DECK SIZE: " + board.getDeck().size());
-		for(int i = 0; i < board.getDeck().size(); ++i) {
-			System.out.println(board.getDeck().get(i).toString());
-		}
+		// TEMP DISPLAY OF CARD DECKS IN CONSOLE
+		//System.out.println("STANDARD DECK SIZE: " + board.getDeck().size());
+		//for(int i = 0; i < board.getDeck().size(); ++i) {
+		//	System.out.println(board.getDeck().get(i).toString());
+		//}
+		
+		//board.generateRandomDeck();
+		
+		//System.out.println("RANDOM DECK SIZE: " + board.getDeck().size());
+		//for(int i = 0; i < board.getDeck().size(); ++i) {
+		//	System.out.println(board.getDeck().get(i).toString());
+		
+			
+		// Starts a game between two people
+		int numOfPlayers = 2;
+		Player playerInfo = new Player();
+
+		playerInfo.gameRunning(numOfPlayers);
+		
+		
+		
 	}
 }
