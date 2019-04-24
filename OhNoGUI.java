@@ -119,19 +119,10 @@ public class OhNoGUI extends JFrame {
 
 	public class OhNoPlayListener implements ActionListener
 	{
-		public void actionPerformed(ActionEvent p)
+		public void actionPerformed(ActionEvent e)
 		{
-			//JFrame frame;
 			boardGUI game = new boardGUI();
 			game.frame.setVisible(true);
-			// Prints to console for now..
-			System.out.println("Playing Game");
-			//playerGUI playerActiveHand = new playerGUI();
-			//playerActiveHand.setVisible(true);
-			
-			// boardGUI build
-			//boardGUI board = new boardGUI();
-			//board.setVisible(true);
 		}
 	}
 	public class OhNoRulesListener implements ActionListener
@@ -262,11 +253,14 @@ public class OhNoGUI extends JFrame {
 			ButtonPanel.setBackground(Color.DARK_GRAY);
 			frame.getContentPane().add(ButtonPanel, BorderLayout.SOUTH);
 			
+			// Player GUI Buttons
 			JButton btnPlayCard = new JButton("Play Card");
 			ButtonPanel.add(btnPlayCard);
 			
 			JButton btnDrawCard = new JButton("Draw Card");
 			ButtonPanel.add(btnDrawCard);
+			
+			
 			
 			JPanel BoardPanel = new JPanel();
 			frame.getContentPane().add(BoardPanel, BorderLayout.CENTER);
@@ -308,13 +302,33 @@ public class OhNoGUI extends JFrame {
 			panel_5.setBackground(Color.BLACK);
 			row1panel.add(panel_5);
 			
+			JLabel lblOhno_2 = new JLabel("OH-NO");
+			lblOhno_2.setFont(new Font("Tahoma", Font.BOLD, 20));
+			lblOhno_2.setForeground(Color.RED);
+			lblOhno_2.setBackground(Color.BLACK);
+			panel_5.add(lblOhno_2);
+			
 			JPanel panel_6 = new JPanel();
 			panel_6.setBackground(Color.BLACK);
 			row1panel.add(panel_6);
 			
+			JLabel lblOhno_3 = new JLabel("OH-NO");
+			lblOhno_3.setFont(new Font("Tahoma", Font.BOLD, 20));
+			lblOhno_3.setForeground(Color.RED);
+			lblOhno_3.setBackground(Color.BLACK);
+			panel_6.add(lblOhno_3);
+			
 			JPanel panel_7 = new JPanel();
 			panel_7.setBackground(Color.BLACK);
 			row1panel.add(panel_7);
+			
+			JLabel lblOhno_4 = new JLabel("OH-NO");
+			lblOhno_4.setFont(new Font("Tahoma", Font.BOLD, 20));
+			lblOhno_4.setForeground(Color.RED);
+			lblOhno_4.setBackground(Color.BLACK);
+			panel_7.add(lblOhno_4);
+			
+			
 			
 			JPanel panel_8 = new JPanel();
 			panel_8.setBackground(Color.WHITE);
@@ -348,6 +362,12 @@ public class OhNoGUI extends JFrame {
 			drawPile_Upper_panel.setBackground(Color.BLACK);
 			row3panel.add(drawPile_Upper_panel);
 			
+			JLabel lblDrawPile = new JLabel("OH-NO");
+			lblDrawPile.setFont(new Font("Tahoma", Font.BOLD, 20));
+			lblDrawPile.setForeground(Color.RED);
+			lblDrawPile.setBackground(Color.BLACK);
+			drawPile_Upper_panel.add(lblDrawPile);
+			
 			JPanel panel_31 = new JPanel();
 			panel_31.setBackground(Color.WHITE);
 			row3panel.add(panel_31);
@@ -355,6 +375,12 @@ public class OhNoGUI extends JFrame {
 			JPanel playPile_Upper_panel = new JPanel();
 			playPile_Upper_panel.setBackground(Color.GRAY);
 			row3panel.add(playPile_Upper_panel);
+			
+			JLabel lblPlayPile = new JLabel("OH-NO");
+			lblPlayPile.setFont(new Font("Tahoma", Font.BOLD, 20));
+			lblPlayPile.setForeground(Color.RED);
+			lblPlayPile.setBackground(Color.BLACK);
+			playPile_Upper_panel.add(lblPlayPile);
 			
 			JPanel panel_33 = new JPanel();
 			panel_33.setBackground(Color.WHITE);
@@ -389,13 +415,38 @@ public class OhNoGUI extends JFrame {
 			drawPile_Bottom_panel.setBackground(Color.BLACK);
 			row4panel.add(drawPile_Bottom_panel);
 			
+			JLabel lblDrawPileBottom = new JLabel("OH-NO");
+			lblDrawPileBottom.setFont(new Font("Tahoma", Font.BOLD, 20));
+			lblDrawPileBottom.setForeground(Color.RED);
+			lblDrawPileBottom.setBackground(Color.BLACK);
+			drawPile_Bottom_panel.add(lblDrawPileBottom);
+			
+			
+			JButton drawButton = new JButton("Draw Card");
+			drawPile_Bottom_panel.add(drawButton);
+			Buttons btn = new Buttons();
+			btn.execute(drawButton);
+			
+			
+
+			
+			
+			
+			
 			JPanel panel_40 = new JPanel();
 			panel_40.setBackground(Color.WHITE);
 			row4panel.add(panel_40);
 			
-			JPanel playPile_Lower_panel = new JPanel();
-			playPile_Lower_panel.setBackground(Color.GRAY);
-			row4panel.add(playPile_Lower_panel);
+			JPanel playPile_Bottom_panel = new JPanel();
+			playPile_Bottom_panel.setBackground(Color.GRAY);
+			row4panel.add(playPile_Bottom_panel);
+			
+			JLabel lblPlayPileBottom = new JLabel("OH-NO");
+			lblPlayPileBottom.setFont(new Font("Tahoma", Font.BOLD, 20));
+			lblPlayPileBottom.setForeground(Color.RED);
+			lblPlayPileBottom.setBackground(Color.BLACK);
+			playPile_Bottom_panel.add(lblPlayPileBottom);
+			
 			
 			JPanel panel_42 = new JPanel();
 			panel_42.setBackground(Color.WHITE);
@@ -472,7 +523,7 @@ public class OhNoGUI extends JFrame {
 			JPanel panel_10 = new JPanel();
 			panel_10.setBackground(Color.WHITE);
 			row9panel.add(panel_10);
-			
+			// link to draw pile to add buttons on card display
 			JPanel panel_11 = new JPanel();
 			panel_11.setBackground(Color.BLUE);
 			row9panel.add(panel_11);
@@ -502,11 +553,6 @@ public class OhNoGUI extends JFrame {
 			row9panel.add(panel_17);
 		}
 		
-	
-	
-	
-		
-	}
 
-	
+}
 }

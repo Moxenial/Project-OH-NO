@@ -71,6 +71,7 @@ public class Player {
 		
 	}
 	
+	// Takes card from deck and moves it to the players hand then removes it from the deck ArrayList
 	public void deckToHand(int playerTurnNum)
 	{
 		int drawPile = deck.size();
@@ -105,6 +106,7 @@ public class Player {
 		System.out.println(deck);
 	}
 	
+	// Alternate to deckToHand() Takes card drawn from pile and the current players number and adds card to players hand
 	public void drawCard(Card drawnCard, int playerTurnNum)
 	{
 
@@ -130,7 +132,7 @@ public class Player {
 		System.out.println(deck);
 	}
 	
-	
+	// Takes the card from the player and compares it against the discard pile, if it cant be played it will have to ask the user to play another
 	public void playCard(Card playedCard)
 	{
 		
@@ -146,7 +148,7 @@ public class Player {
 
 	}
 	
-	
+	// Checks player hand for Oh-No, currently prints to console but will need to allow Oh-No button to be clicked in GUI
 	public void ohnoCheck(int playerTurnNum)
 	{
 
@@ -195,7 +197,7 @@ public class Player {
 	
 
 
-	
+	// Displays the players hands for checking cards
 	public void getPlayerHand(int playerNum)
 	{
 		if (playerNum == 2)
@@ -226,6 +228,8 @@ public class Player {
 				System.out.println(playerHand4);
 		}
 	}
+	
+	// Runs the game, will need structure for game operation
 	public void gameRunning(int playerNum)
 	{
 		// Start
