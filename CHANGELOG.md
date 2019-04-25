@@ -1,5 +1,7 @@
 # Changelog
-
+* 4/25
+ * Card graphics added to folder /cards/ .
+ 
 * 4/11
   * nate-changes (merged):
     * Basic GUI interface created.
