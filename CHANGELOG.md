@@ -1,6 +1,6 @@
 # Changelog
 * 4/25
- * Card graphics added to folder /cards/ .
+  * Card graphics added to folder /cards/ .
  
 * 4/11
   * nate-changes (merged):
