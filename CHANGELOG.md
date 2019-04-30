@@ -1,4 +1,7 @@
 # Changelog
+* 4/30
+  * Facedown card added to /cards/ .
+  
 * 4/25
   * Card graphics added to folder /cards/ .
  
