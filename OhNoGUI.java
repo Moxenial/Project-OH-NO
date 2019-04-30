@@ -115,14 +115,27 @@ public class OhNoGUI extends JFrame {
 			System.exit(0);
 		}
 	}
-	
-
 	public class OhNoPlayListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+			// Starts a game between two people
+			int numOfPlayers = 2;
+			Player playing = new Player();
+
+			playing.gameRunning(numOfPlayers, playing);
+			
+			
+			
+			
+			
+			
+			
+			
+			// Sets boardGUi to visible
 			boardGUI game = new boardGUI();
 			game.frame.setVisible(true);
+			
 		}
 	}
 	public class OhNoRulesListener implements ActionListener
@@ -137,8 +150,8 @@ public class OhNoGUI extends JFrame {
 
 	public class RuleBook extends JFrame
 	{
-		public static final int WIDTH = 600;
-		public static final int HEIGHT = 300;
+		public static final int WIDTH = 900;
+		public static final int HEIGHT = 600;
 		public RuleBook(){
 		
 			super();
@@ -149,20 +162,28 @@ public class OhNoGUI extends JFrame {
 			setLayout(new BorderLayout());
 			
 			JPanel rulesPanel = new JPanel();
+			rulesPanel.setBackground(Color.LIGHT_GRAY);
 			JLabel title = new JLabel("Here are the rules for OH-NO!");
-			JLabel rule1 = new JLabel("Here is rule 1");
-			JLabel rule2 = new JLabel("here is rule 2");
-			JLabel rule3 = new JLabel("here is rule 3");
-			JLabel rule4 = new JLabel("here is rule 4");
-			JLabel rule5 = new JLabel("here is rule 5");
+			JLabel rule1 = new JLabel("1. Each player will be dealt 7 cards at start");
+			JLabel rule2 = new JLabel("2. Starting card will be flipped from the top of the Draw Pile and placed face up on the Discard Pile");
+			JLabel rule3 = new JLabel("3. Player to the left of the dealer will go first");
+			JLabel rule4 = new JLabel("4. Cards to be played must be of matching color, number or you can play a Wild/Draw4 card");
+			JLabel rule5 = new JLabel("5. If no card can be played, player must draw from the Draw Pile");
+			JLabel rule6 = new JLabel("6. When a player has only one card left they must call Oh-No prior to playing their last card");
+			JLabel rule7 = new JLabel("7. If the player does not call Oh-No and another player calls them on it, they must draw 7 cards from the Draw Pile");
+			JLabel rule8 = new JLabel("8. Special Cards: Draw +2 causes the next player to Draw 2 cards from the Draw Pile. Skip Cards cause the next player to be skipped. Draw 4 Cards cause the next player to draw 4 cards and the player who played the Draw 4 chooses the color to be played");
 			
-			rulesPanel.setLayout(new GridLayout(6, 1));
+			
+			rulesPanel.setLayout(new GridLayout(9, 1));
 			rulesPanel.add(title);
 			rulesPanel.add(rule1);
 			rulesPanel.add(rule2);
 			rulesPanel.add(rule3);
 			rulesPanel.add(rule4);
 			rulesPanel.add(rule5);
+			rulesPanel.add(rule6);
+			rulesPanel.add(rule7);
+			rulesPanel.add(rule8);
 			
 			add(rulesPanel, BorderLayout.CENTER);
 
@@ -177,61 +198,8 @@ public class OhNoGUI extends JFrame {
 
 	}
 	
-	public class playerGUI extends JFrame
-	{
-		public static final int WIDTH = 900;
-		public static final int HEIGHT = 500;
-		
-		public playerGUI()
-		{
-			super();
-			setSize(WIDTH, HEIGHT);
-			setTitle("Player Hand!");
-			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			
-			JPanel redCards = new JPanel();
-			redCards.setBackground(Color.RED);
-			
-			JPanel blueCards = new JPanel();
-			blueCards.setBackground(Color.BLUE);
-			
-			JPanel greenCards = new JPanel();
-			greenCards.setBackground(Color.GREEN);
-			
-			JPanel yellowCards = new JPanel();
-			yellowCards.setBackground(Color.YELLOW);
-			
-			// main panel for cards
-			JPanel playerCards = new JPanel();
-			playerCards.setLayout(new GridLayout(1,4));
-			playerCards.setBackground(Color.WHITE);
-			
-			
-			
-			
-			PracticeArrayListForGUICards playerHand = new PracticeArrayListForGUICards();
-			boolean [] cards = playerHand.hasCard();
-			
-			if (cards[0] == true) 	//add && number to check and display both
-			{
-				playerCards.add(redCards);
-			}
-			if (cards[1] == true)
-			{
-				playerCards.add(blueCards);
-			}
-			if (cards[2] == true)
-			{
-				playerCards.add(greenCards);
-			}
-			if (cards[3] == true)
-			{
-				playerCards.add(yellowCards);
-			}
-				
-			add(playerCards, BorderLayout.CENTER);
-		}
-	}
+	
+	
 	public class boardGUI extends JFrame
 	{
 		private static final int WIDTH = 1200;
@@ -254,11 +222,13 @@ public class OhNoGUI extends JFrame {
 			frame.getContentPane().add(ButtonPanel, BorderLayout.SOUTH);
 			
 			// Player GUI Buttons
-			JButton btnPlayCard = new JButton("Play Card");
-			ButtonPanel.add(btnPlayCard);
+			JButton btnNewGame = new JButton("New Game");
+			btnNewGame.addActionListener(new OhNoPlayListener());
+			ButtonPanel.add(btnNewGame);
 			
-			JButton btnDrawCard = new JButton("Draw Card");
-			ButtonPanel.add(btnDrawCard);
+			JButton btnQuitGame = new JButton("Quit Game");
+			btnQuitGame.addActionListener(new OhNoQuitListener());
+			ButtonPanel.add(btnQuitGame);
 			
 			
 			
@@ -410,7 +380,6 @@ public class OhNoGUI extends JFrame {
 			panel_38.setBackground(Color.WHITE);
 			row4panel.add(panel_38);
 			
-			// Action Listener for DrawFunction
 			JPanel drawPile_Bottom_panel = new JPanel();
 			drawPile_Bottom_panel.setBackground(Color.BLACK);
 			row4panel.add(drawPile_Bottom_panel);
@@ -420,18 +389,7 @@ public class OhNoGUI extends JFrame {
 			lblDrawPileBottom.setForeground(Color.RED);
 			lblDrawPileBottom.setBackground(Color.BLACK);
 			drawPile_Bottom_panel.add(lblDrawPileBottom);
-			
-			
-			JButton drawButton = new JButton("Draw Card");
-			drawPile_Bottom_panel.add(drawButton);
-			Buttons btn = new Buttons();
-			btn.execute(drawButton);
-			
-			
-
-			
-			
-			
+				
 			
 			JPanel panel_40 = new JPanel();
 			panel_40.setBackground(Color.WHITE);
@@ -472,6 +430,8 @@ public class OhNoGUI extends JFrame {
 			row7panel.setBackground(Color.WHITE);
 			BoardPanel.add(row7panel);
 			
+			
+			// Blank row
 			JPanel row8panel = new JPanel();
 			BoardPanel.add(row8panel);
 			row8panel.setLayout(new GridLayout(1, 9, 0, 0));
@@ -485,23 +445,23 @@ public class OhNoGUI extends JFrame {
 			row8panel.add(panel_19);
 			
 			JPanel panel_20 = new JPanel();
-			panel_20.setBackground(Color.BLUE);
+			panel_20.setBackground(Color.WHITE);
 			row8panel.add(panel_20);
 			
 			JPanel panel_21 = new JPanel();
-			panel_21.setBackground(Color.RED);
+			panel_21.setBackground(Color.WHITE);
 			row8panel.add(panel_21);
 			
 			JPanel panel_22 = new JPanel();
-			panel_22.setBackground(Color.GREEN);
+			panel_22.setBackground(Color.WHITE);
 			row8panel.add(panel_22);
 			
 			JPanel panel_23 = new JPanel();
-			panel_23.setBackground(Color.YELLOW);
+			panel_23.setBackground(Color.WHITE);
 			row8panel.add(panel_23);
 			
 			JPanel panel_24 = new JPanel();
-			panel_24.setBackground(Color.DARK_GRAY);
+			panel_24.setBackground(Color.WHITE);
 			row8panel.add(panel_24);
 			
 			JPanel panel_25 = new JPanel();
@@ -512,47 +472,70 @@ public class OhNoGUI extends JFrame {
 			panel_26.setBackground(Color.WHITE);
 			row8panel.add(panel_26);
 			
-			JPanel row9panel = new JPanel();
-			BoardPanel.add(row9panel);
-			row9panel.setLayout(new GridLayout(1, 9, 0, 0));
+			
+			// Bottom Row with buttons for players
+			JPanel bottomPanel = new JPanel();
+			BoardPanel.add(bottomPanel);
+			bottomPanel.setLayout(new GridLayout(1, 8, 0, 0));
 			
 			JPanel panel_2 = new JPanel();
 			panel_2.setBackground(Color.WHITE);
-			row9panel.add(panel_2);
+			bottomPanel.add(panel_2);
 			
 			JPanel panel_10 = new JPanel();
 			panel_10.setBackground(Color.WHITE);
-			row9panel.add(panel_10);
-			// link to draw pile to add buttons on card display
-			JPanel panel_11 = new JPanel();
-			panel_11.setBackground(Color.BLUE);
-			row9panel.add(panel_11);
+			bottomPanel.add(panel_10);
 			
-			JPanel panel_12 = new JPanel();
-			panel_12.setBackground(Color.RED);
-			row9panel.add(panel_12);
 			
-			JPanel panel_13 = new JPanel();
-			panel_13.setBackground(Color.GREEN);
-			row9panel.add(panel_13);
+			// Player selection cards/buttons to open player GUI
+			JPanel player1 = new JPanel();
+			player1.setBackground(Color.LIGHT_GRAY);
+			bottomPanel.add(player1);
+			JButton player1btn = new JButton("Player 1's Hand");
+			player1btn.addActionListener(new playerHand1());
+			player1.add(player1btn);
 			
-			JPanel panel_14 = new JPanel();
-			panel_14.setBackground(Color.YELLOW);
-			row9panel.add(panel_14);
+			JPanel player2 = new JPanel();
+			player2.setBackground(Color.DARK_GRAY);
+			bottomPanel.add(player2);
+			JButton player2btn = new JButton("Player 2's Hand");
+			//player2btn.addActionListener(new OhNoPlayerHand());
+			player2.add(player2btn);
 			
+			JPanel player3 = new JPanel();
+			player3.setBackground(Color.LIGHT_GRAY);
+			bottomPanel.add(player3);
+			JButton player3btn = new JButton("Player 3's Hand");
+			//player3btn.addActionListener(new OhNoPlayerHand());
+			player3.add(player3btn);
+			
+			JPanel player4 = new JPanel();
+			player4.setBackground(Color.DARK_GRAY);
+			bottomPanel.add(player4);
+			JButton player4btn = new JButton("Player 4's Hand");
+			//player4btn.addActionListener(new OhNoPlayerHand());
+			player4.add(player4btn);
+
 			JPanel panel_15 = new JPanel();
-			panel_15.setBackground(Color.DARK_GRAY);
-			row9panel.add(panel_15);
+			panel_15.setBackground(Color.WHITE);
+			bottomPanel.add(panel_15);
 			
 			JPanel panel_16 = new JPanel();
 			panel_16.setBackground(Color.WHITE);
-			row9panel.add(panel_16);
+			bottomPanel.add(panel_16);
 			
-			JPanel panel_17 = new JPanel();
-			panel_17.setBackground(Color.WHITE);
-			row9panel.add(panel_17);
 		}
 		
 
 }
+
+	public class playerHand1 implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{		
+			PlayerHandGUI playerHand1 = new PlayerHandGUI();
+			playerHand1.setVisible(true);
+		}
+	}
+
 }

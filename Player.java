@@ -21,26 +21,22 @@ public class Player {
 		int NUM_PLAYERS = playerNumber;
 		int FIRST_DEAL = 7;
 		int DECK_SIZE = 108;
+		// Elements start at 0
+		int topCard = DECK_SIZE-1;
 		
 		// Deals cards to players from playerNumber
 		if (NUM_PLAYERS == 2)
 		{
-			int topCard = DECK_SIZE-1;
-			
 
 			for (int i = 0; i < FIRST_DEAL; i++)
 			{
-
-				Card transferCard = deck.get(topCard);
+				playerNum_1.add(deck.get(topCard));
+				deck.remove(topCard);
 				topCard = topCard -1;
-				playerNum_1.add(transferCard);
 				
-
-				Card transferCard2 = deck.get(topCard);
+				playerNum_2.add(deck.get(topCard));
+				deck.remove(topCard);
 				topCard = topCard -1;
-				playerNum_2.add(transferCard2);
-				
-
 
 			}
 
@@ -49,19 +45,40 @@ public class Player {
 		{
 			for (int i = 0; i < FIRST_DEAL; i++)
 			{
-				//playerNum_1.add("Player # 1 Hand");
-				//playerNum_2.add("Player # 2 Hand");
-				//playerNum_3.add("Player # 4 Hand");
+				playerNum_1.add(deck.get(topCard));
+				deck.remove(topCard);
+				topCard = topCard -1;
+				
+				playerNum_2.add(deck.get(topCard));
+				deck.remove(topCard);
+				topCard = topCard -1;
+				
+				playerNum_3.add(deck.get(topCard));
+				deck.remove(topCard);
+				topCard = topCard -1;
+				
+
 			}
 		}
 		else if (NUM_PLAYERS == 4)
 		{
 			for (int i = 0; i < FIRST_DEAL; i++)
 			{
-				//playerNum_1.add("Player # 1 Hand");
-				//playerNum_2.add("Player # 2 Hand");
-				//playerNum_3.add("Player # 3 Hand");
-				//playerNum_4.add("Player # 4 Hand");
+				playerNum_1.add(deck.get(topCard));
+				deck.remove(topCard);
+				topCard = topCard -1;
+				
+				playerNum_2.add(deck.get(topCard));
+				deck.remove(topCard);
+				topCard = topCard -1;
+				
+				playerNum_3.add(deck.get(topCard));
+				deck.remove(topCard);
+				topCard = topCard -1;
+				
+				playerNum_4.add(deck.get(topCard));
+				deck.remove(topCard);
+				topCard = topCard -1;
 			}
 		}
 		else
@@ -202,35 +219,26 @@ public class Player {
 	{
 		if (playerNum == 2)
 		{
-			for(Card playerHand1 : playerNum_1)
-				System.out.println(playerHand1);
-			for(Card playerHand2 : playerNum_2)
-				System.out.println(playerHand2);
+			System.out.println(playerNum_1);
+			System.out.println(playerNum_2);
 		}
 		else if (playerNum == 3)
 		{
-			for(Card playerHand1 : playerNum_1)
-				System.out.println(playerHand1);
-			for(Card playerHand2 : playerNum_2)
-				System.out.println(playerHand2);
-			for(Card playerHand3 : playerNum_3)
-				System.out.println(playerHand3);
+			System.out.println(playerNum_1);
+			System.out.println(playerNum_2);
+			System.out.println(playerNum_3);
 		}
 		else if (playerNum == 4)
 		{
-			for(Card playerHand1 : playerNum_1)
-				System.out.println(playerHand1);
-			for(Card playerHand2 : playerNum_2)
-				System.out.println(playerHand2);
-			for(Card playerHand3 : playerNum_3)
-				System.out.println(playerHand3);
-			for(Card playerHand4 : playerNum_4)
-				System.out.println(playerHand4);
+			System.out.println(playerNum_1);
+			System.out.println(playerNum_2);
+			System.out.println(playerNum_3);
+			System.out.println(playerNum_4);
 		}
 	}
 	
 	// Runs the game, will need structure for game operation
-	public void gameRunning(int playerNum)
+	public void gameRunning(int playerNum, Player game)
 	{
 		// Start
 		// Get total players
@@ -238,7 +246,7 @@ public class Player {
 		int firstPlayer = 1;
 		
 		//Creates Objects of Player and Board to interact for game play
-		Player game = new Player();
+		//Player game = new Player();
 		Board cards = new Board();
 		
 		// Need to connect to GUI
@@ -249,6 +257,9 @@ public class Player {
 		game.dealHand(totalPlayers, cards.getDeck());
 		System.out.println("\nThis is where the game starts\n ");
 		game.getPlayerHand(totalPlayers);
+
+
+		
 		
 		
 		

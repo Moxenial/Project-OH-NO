@@ -163,7 +163,6 @@ public class Board implements DefaultRules{
 			this.deck.add(new Card(color, value));
 		}
 		shuffle();
-		//return deck;
 	}
 	
 	//default contructor

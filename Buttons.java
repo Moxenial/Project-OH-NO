@@ -8,8 +8,9 @@ public class Buttons {
 	private JButton drawButton;
 	private drawButtonListener drawListener;
 	
-	public Buttons() 
+	public Buttons(JButton drawButton) 
 	{
+		this.drawButton = drawButton;
 		frame = new JFrame("Draw Card Pls");
 		drawButton = new JButton("Draw Card");
 		
