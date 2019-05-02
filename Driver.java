@@ -23,19 +23,12 @@ public class Driver {
 	}
 
 	
-	
-	
-	
 	public static void main(String[] args){
 		
 		// Sets the GUI as active
 		OhNoGUI game = new OhNoGUI();
 		game.setVisible(true);
-		
 
-
-		
-		
 		
 	}
 }

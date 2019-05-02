@@ -5,10 +5,15 @@ public class Board implements DefaultRules{
 	private ArrayList<Card> deck;
 	private ArrayList<Card> discardPile;
 	private Card currentPlayedCard;
+	private ArrayList<Card> compareDeck;
 	
 	//accessors
 	public ArrayList<Card> getDeck() {
 		return this.deck;
+	}
+	public ArrayList<Card> getCompDeck()
+	{
+		return this.compareDeck;
 	}
 	
 	public void shuffle() {
@@ -164,11 +169,129 @@ public class Board implements DefaultRules{
 		}
 		shuffle();
 	}
+	public void generateComparisonDeck() {
+		this.deck.clear();
+		//colorless 8 cards
+		this.compareDeck.add(new Card(0,0));
+		this.compareDeck.add(new Card(0,0));
+		this.compareDeck.add(new Card(0,0));
+		this.compareDeck.add(new Card(0,0));
+		this.compareDeck.add(new Card(0,1));
+		this.compareDeck.add(new Card(0,1));
+		this.compareDeck.add(new Card(0,1));
+		this.compareDeck.add(new Card(0,1));
+		//red 25 cards
+		this.compareDeck.add(new Card(1,0));
+		this.compareDeck.add(new Card(1,1));
+		this.compareDeck.add(new Card(1,1));
+		this.compareDeck.add(new Card(1,2));
+		this.compareDeck.add(new Card(1,2));
+		this.compareDeck.add(new Card(1,3));
+		this.compareDeck.add(new Card(1,3));
+		this.compareDeck.add(new Card(1,4));
+		this.compareDeck.add(new Card(1,4));
+		this.compareDeck.add(new Card(1,5));
+		this.compareDeck.add(new Card(1,5));
+		this.compareDeck.add(new Card(1,6));
+		this.compareDeck.add(new Card(1,6));
+		this.compareDeck.add(new Card(1,7));
+		this.compareDeck.add(new Card(1,7));
+		this.compareDeck.add(new Card(1,8));
+		this.compareDeck.add(new Card(1,8));
+		this.compareDeck.add(new Card(1,9));
+		this.compareDeck.add(new Card(1,9));
+		this.compareDeck.add(new Card(1,10));
+		this.compareDeck.add(new Card(1,10));
+		this.compareDeck.add(new Card(1,11));
+		this.compareDeck.add(new Card(1,11));
+		this.compareDeck.add(new Card(1,12));
+		this.compareDeck.add(new Card(1,12));
+		//yellow
+		this.compareDeck.add(new Card(2,0));
+		this.compareDeck.add(new Card(2,1));
+		this.compareDeck.add(new Card(2,1));
+		this.compareDeck.add(new Card(2,2));
+		this.compareDeck.add(new Card(2,2));
+		this.compareDeck.add(new Card(2,3));
+		this.compareDeck.add(new Card(2,3));
+		this.compareDeck.add(new Card(2,4));
+		this.compareDeck.add(new Card(2,4));
+		this.compareDeck.add(new Card(2,5));
+		this.compareDeck.add(new Card(2,5));
+		this.compareDeck.add(new Card(2,6));
+		this.compareDeck.add(new Card(2,6));
+		this.compareDeck.add(new Card(2,7));
+		this.compareDeck.add(new Card(2,7));
+		this.compareDeck.add(new Card(2,8));
+		this.compareDeck.add(new Card(2,8));
+		this.compareDeck.add(new Card(2,9));
+		this.compareDeck.add(new Card(2,9));
+		this.compareDeck.add(new Card(2,10));
+		this.compareDeck.add(new Card(2,10));
+		this.compareDeck.add(new Card(2,11));
+		this.compareDeck.add(new Card(2,11));
+		this.compareDeck.add(new Card(2,12));
+		this.compareDeck.add(new Card(2,12));
+		//green
+		this.compareDeck.add(new Card(3,0));
+		this.compareDeck.add(new Card(3,1));
+		this.compareDeck.add(new Card(3,1));
+		this.compareDeck.add(new Card(3,2));
+		this.compareDeck.add(new Card(3,2));
+		this.compareDeck.add(new Card(3,3));
+		this.compareDeck.add(new Card(3,3));
+		this.compareDeck.add(new Card(3,4));
+		this.compareDeck.add(new Card(3,4));
+		this.compareDeck.add(new Card(3,5));
+		this.compareDeck.add(new Card(3,5));
+		this.compareDeck.add(new Card(3,6));
+		this.compareDeck.add(new Card(3,6));
+		this.compareDeck.add(new Card(3,7));
+		this.compareDeck.add(new Card(3,7));
+		this.compareDeck.add(new Card(3,8));
+		this.compareDeck.add(new Card(3,8));
+		this.compareDeck.add(new Card(3,9));
+		this.compareDeck.add(new Card(3,9));
+		this.compareDeck.add(new Card(3,10));
+		this.compareDeck.add(new Card(3,10));
+		this.compareDeck.add(new Card(3,11));
+		this.compareDeck.add(new Card(3,11));
+		this.compareDeck.add(new Card(3,12));
+		this.compareDeck.add(new Card(3,12));
+		//blue
+		this.compareDeck.add(new Card(4,0));
+		this.compareDeck.add(new Card(4,1));
+		this.compareDeck.add(new Card(4,1));
+		this.compareDeck.add(new Card(4,2));
+		this.compareDeck.add(new Card(4,2));
+		this.compareDeck.add(new Card(4,3));
+		this.compareDeck.add(new Card(4,3));
+		this.compareDeck.add(new Card(4,4));
+		this.compareDeck.add(new Card(4,4));
+		this.compareDeck.add(new Card(4,5));
+		this.compareDeck.add(new Card(4,5));
+		this.compareDeck.add(new Card(4,6));
+		this.compareDeck.add(new Card(4,6));
+		this.compareDeck.add(new Card(4,7)); 
+		this.compareDeck.add(new Card(4,7));
+		this.compareDeck.add(new Card(4,8));
+		this.compareDeck.add(new Card(4,8));
+		this.compareDeck.add(new Card(4,9));
+		this.compareDeck.add(new Card(4,9));
+		this.compareDeck.add(new Card(4,10));
+		this.compareDeck.add(new Card(4,10));
+		this.compareDeck.add(new Card(4,11));
+		this.compareDeck.add(new Card(4,11));
+		this.compareDeck.add(new Card(4,12));
+		this.compareDeck.add(new Card(4,12));
+	}
 	
 	//default contructor
 	public Board() {
 		this.deck = new ArrayList<Card>();
 		this.discardPile = new ArrayList<Card>();
 		this.currentPlayedCard = new Card(1, 1);
+		this.compareDeck = new ArrayList<Card>();
 	}
+	
 }

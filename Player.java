@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Player {
 	
 	// Creates an array list for the players hand
-	
+	private int numPlayers;
 	private ArrayList<Card> deck;
 	private ArrayList<Card> discardPile = new ArrayList<Card>(108);
 	
@@ -13,12 +13,43 @@ public class Player {
 	private ArrayList<Card> playerNum_3 = new ArrayList<Card>(30);
 	private ArrayList<Card> playerNum_4 = new ArrayList<Card>(30);	
 	
+	public Player(ArrayList<Card> GUIDeck, int GUInumPlayers)
+	{
+		numPlayers = GUInumPlayers;
+		deck = GUIDeck;
+		dealHand(GUInumPlayers, GUIDeck);
+	}
+	
+	
+	public ArrayList<Card> getDeck()
+	{
+		return deck;
+	}
+	public ArrayList<Card> getPlayer1Hand()
+	{
+		return playerNum_1;
+	}
+	public ArrayList<Card> getPlayer2Hand()
+	{
+		return playerNum_2;
+	}
+	public ArrayList<Card> getPlayer3Hand()
+	{
+		return playerNum_3;
+	}
+	public ArrayList<Card> getPlayer4Hand()
+	{
+		return playerNum_4;
+	}
 
-
+	
+	
+	
+	
 	// Arguements dealHand(ArrayList<Card> deck)
 	public void dealHand(int playerNumber, ArrayList<Card> deck)
 	{
-		int NUM_PLAYERS = playerNumber;
+		int NUM_PLAYERS = numPlayers;
 		int FIRST_DEAL = 7;
 		int DECK_SIZE = 108;
 		// Elements start at 0
@@ -150,6 +181,7 @@ public class Player {
 	}
 	
 	// Takes the card from the player and compares it against the discard pile, if it cant be played it will have to ask the user to play another
+	// Unfinished
 	public void playCard(Card playedCard)
 	{
 		
@@ -237,32 +269,25 @@ public class Player {
 		}
 	}
 	
+
 	// Runs the game, will need structure for game operation
-	public void gameRunning(int playerNum, Player game)
+	public void gameRunning(int playerNum)
 	{
-		// Start
-		// Get total players
-		// First Player goes first...duhhh
-		int firstPlayer = 1;
+		// temp number of players
+		int numOfPlayers = 2;
 		
 		//Creates Objects of Player and Board to interact for game play
-		//Player game = new Player();
-		Board cards = new Board();
+		//Player player = new Player();
+		//player.setDeck(deck);
+		//System.out.println(deck);
 		
-		// Need to connect to GUI
-		int totalPlayers = playerNum;
-		
-		cards.generateStandardDeck();
-		
-		game.dealHand(totalPlayers, cards.getDeck());
-		System.out.println("\nThis is where the game starts\n ");
-		game.getPlayerHand(totalPlayers);
-
 
 		
 		
 		
-		
+		//player.dealHand(numOfPlayers, cards.getDeck());
+		//System.out.println("\nThis is where the game starts\n ");
+		//player.getPlayerHand(numOfPlayers);
 		
 		
 	}

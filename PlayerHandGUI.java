@@ -1,20 +1,66 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class PlayerHandGUI extends JFrame {
 
 	private static final int WIDTH = 1000;
 	private static final int HEIGHT =  800;
+	// Testing array list, will use players hand list as an arguement later
+	private ArrayList<Card> playersHand;
+	//private ArrayList<Card> playerNum_1 = new ArrayList<Card>();
+	//private ArrayList<Card> playerNum_2 = new ArrayList<Card>();
+	//private ArrayList<Card> playerNum_3 = new ArrayList<Card>();
+	//private ArrayList<Card> playerNum_4 = new ArrayList<Card>();
+	private ArrayList<Card> deck;
+	private ArrayList<Card> compareDeck;
+	private ArrayList<Card> discardPile = new ArrayList<Card>();
 	
-	public PlayerHandGUI()
+
+	public void setDeck(ArrayList<Card> deck)
 	{
+		this.deck = deck;
+	}
+	public ArrayList<Card> getDeck()
+	{
+		return deck;
+	}
+	
+	public PlayerHandGUI(ArrayList<Card> playerDeck, ArrayList<Card> playersActiveHand)
+	{
+		
 		super("Player Hand");
 		setSize(WIDTH, HEIGHT);
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		setLayout(new BorderLayout());
+		
+		deck = playerDeck;
+		playersHand = playersActiveHand;
+		//playerNum_1 = playerNum_1Hand;
+		//playerNum_2 = playerNum_2Hand;
+		//playerNum_3 = playerNum_3Hand;
+		//playerNum_4 = playerNum_4Hand;
+		
+		// Test functions
+		//testList();
+		//testPrinter();
+		System.out.println(deck);
+		System.out.println(playersHand);
+
+
+		
+		
+		//System.out.println(playerNum_1);
+		//System.out.println(playerNum_2);
+		//System.out.println(playerNum_3);
+		//System.out.println(playerNum_4);
+
+		// Sort hand later?
+		//Collections.sort(playerNum_1);
 		
 		// Main panels
 		JPanel mainPanel = new JPanel();
@@ -122,68 +168,68 @@ public class PlayerHandGUI extends JFrame {
 		
 		// Imports card images for buttons
 		// Blue Cards
-		String cardB0 = "C:/Users/sv7424vd/Desktop/cards/b0.png";
-		String cardB1 = "C:/Users/sv7424vd/Desktop/cards/b1.png";
-		String cardB2 = "C:/Users/sv7424vd/Desktop/cards/b2.png";
-		String cardB3 = "C:/Users/sv7424vd/Desktop/cards/b3.png";
-		String cardB4 = "C:/Users/sv7424vd/Desktop/cards/b4.png";
-		String cardB5 = "C:/Users/sv7424vd/Desktop/cards/b5.png";
-		String cardB6 = "C:/Users/sv7424vd/Desktop/cards/b6.png";
-		String cardB7 = "C:/Users/sv7424vd/Desktop/cards/b7.png";
-		String cardB8 = "C:/Users/sv7424vd/Desktop/cards/b8.png";
-		String cardB9 = "C:/Users/sv7424vd/Desktop/cards/b9.png";
+		String cardB0 = "C:/Users/Nathan/Desktop/cards/b0.png";
+		String cardB1 = "C:/Users/Nathan/Desktop/cards/b1.png";
+		String cardB2 = "C:/Users/Nathan/Desktop/cards/b2.png";
+		String cardB3 = "C:/Users/Nathan/Desktop/cards/b3.png";
+		String cardB4 = "C:/Users/Nathan/Desktop/cards/b4.png";
+		String cardB5 = "C:/Users/Nathan/Desktop/cards/b5.png";
+		String cardB6 = "C:/Users/Nathan/Desktop/cards/b6.png";
+		String cardB7 = "C:/Users/Nathan/Desktop/cards/b7.png";
+		String cardB8 = "C:/Users/Nathan/Desktop/cards/b8.png";
+		String cardB9 = "C:/Users/Nathan/Desktop/cards/b9.png";
 		
 		// Red Cards
-		String cardR0 = "C:/Users/sv7424vd/Desktop/cards/r0.png";
-		String cardR1 = "C:/Users/sv7424vd/Desktop/cards/r1.png";
-		String cardR2 = "C:/Users/sv7424vd/Desktop/cards/r2.png";
-		String cardR3 = "C:/Users/sv7424vd/Desktop/cards/r3.png";
-		String cardR4 = "C:/Users/sv7424vd/Desktop/cards/r4.png";
-		String cardR5 = "C:/Users/sv7424vd/Desktop/cards/r5.png";
-		String cardR6 = "C:/Users/sv7424vd/Desktop/cards/r6.png";
-		String cardR7 = "C:/Users/sv7424vd/Desktop/cards/r7.png";
-		String cardR8 = "C:/Users/sv7424vd/Desktop/cards/r8.png";
-		String cardR9 = "C:/Users/sv7424vd/Desktop/cards/r9.png";
+		String cardR0 = "C:/Users/Nathan/Desktop/cards/r0.png";
+		String cardR1 = "C:/Users/Nathan/Desktop/cards/r1.png";
+		String cardR2 = "C:/Users/Nathan/Desktop/cards/r2.png";
+		String cardR3 = "C:/Users/Nathan/Desktop/cards/r3.png";
+		String cardR4 = "C:/Users/Nathan/Desktop/cards/r4.png";
+		String cardR5 = "C:/Users/Nathan/Desktop/cards/r5.png";
+		String cardR6 = "C:/Users/Nathan/Desktop/cards/r6.png";
+		String cardR7 = "C:/Users/Nathan/Desktop/cards/r7.png";
+		String cardR8 = "C:/Users/Nathan/Desktop/cards/r8.png";
+		String cardR9 = "C:/Users/Nathan/Desktop/cards/r9.png";
 		
 		// Green Cards
-		String cardG0 = "C:/Users/sv7424vd/Desktop/cards/g0.png";
-		String cardG1 = "C:/Users/sv7424vd/Desktop/cards/g1.png";
-		String cardG2 = "C:/Users/sv7424vd/Desktop/cards/g2.png";
-		String cardG3 = "C:/Users/sv7424vd/Desktop/cards/g3.png";
-		String cardG4 = "C:/Users/sv7424vd/Desktop/cards/g4.png";
-		String cardG5 = "C:/Users/sv7424vd/Desktop/cards/g5.png";
-		String cardG6 = "C:/Users/sv7424vd/Desktop/cards/g6.png";
-		String cardG7 = "C:/Users/sv7424vd/Desktop/cards/g7.png";
-		String cardG8 = "C:/Users/sv7424vd/Desktop/cards/g8.png";
-		String cardG9 = "C:/Users/sv7424vd/Desktop/cards/g9.png";
+		String cardG0 = "C:/Users/Nathan/Desktop/cards/g0.png";
+		String cardG1 = "C:/Users/Nathan/Desktop/cards/g1.png";
+		String cardG2 = "C:/Users/Nathan/Desktop/cards/g2.png";
+		String cardG3 = "C:/Users/Nathan/Desktop/cards/g3.png";
+		String cardG4 = "C:/Users/Nathan/Desktop/cards/g4.png";
+		String cardG5 = "C:/Users/Nathan/Desktop/cards/g5.png";
+		String cardG6 = "C:/Users/Nathan/Desktop/cards/g6.png";
+		String cardG7 = "C:/Users/Nathan/Desktop/cards/g7.png";
+		String cardG8 = "C:/Users/Nathan/Desktop/cards/g8.png";
+		String cardG9 = "C:/Users/Nathan/Desktop/cards/g9.png";
 		
 		// Yellow Cards
-		String cardY0 = "C:/Users/sv7424vd/Desktop/cards/y0.png";
-		String cardY1 = "C:/Users/sv7424vd/Desktop/cards/y1.png";
-		String cardY2 = "C:/Users/sv7424vd/Desktop/cards/y2.png";
-		String cardY3 = "C:/Users/sv7424vd/Desktop/cards/y3.png";
-		String cardY4 = "C:/Users/sv7424vd/Desktop/cards/y4.png";
-		String cardY5 = "C:/Users/sv7424vd/Desktop/cards/y5.png";
-		String cardY6 = "C:/Users/sv7424vd/Desktop/cards/y6.png";
-		String cardY7 = "C:/Users/sv7424vd/Desktop/cards/y7.png";
-		String cardY8 = "C:/Users/sv7424vd/Desktop/cards/y8.png";
-		String cardY9 = "C:/Users/sv7424vd/Desktop/cards/y9.png";
+		String cardY0 = "C:/Users/Nathan/Desktop/cards/y0.png";
+		String cardY1 = "C:/Users/Nathan/Desktop/cards/y1.png";
+		String cardY2 = "C:/Users/Nathan/Desktop/cards/y2.png";
+		String cardY3 = "C:/Users/Nathan/Desktop/cards/y3.png";
+		String cardY4 = "C:/Users/Nathan/Desktop/cards/y4.png";
+		String cardY5 = "C:/Users/Nathan/Desktop/cards/y5.png";
+		String cardY6 = "C:/Users/Nathan/Desktop/cards/y6.png";
+		String cardY7 = "C:/Users/Nathan/Desktop/cards/y7.png";
+		String cardY8 = "C:/Users/Nathan/Desktop/cards/y8.png";
+		String cardY9 = "C:/Users/Nathan/Desktop/cards/y9.png";
 		
 		// Special cards
-		String cardB10 = "C:/Users/sv7424vd/Desktop/cards/b10.png";
-		String cardB11 = "C:/Users/sv7424vd/Desktop/cards/b11.png";
-		String cardB12 = "C:/Users/sv7424vd/Desktop/cards/b12.png";
-		String cardR10 = "C:/Users/sv7424vd/Desktop/cards/r10.png";
-		String cardR11 = "C:/Users/sv7424vd/Desktop/cards/r11.png";
-		String cardR12 = "C:/Users/sv7424vd/Desktop/cards/r12.png";
-		String cardG10 = "C:/Users/sv7424vd/Desktop/cards/g10.png";
-		String cardG11 = "C:/Users/sv7424vd/Desktop/cards/g11.png";
-		String cardG12 = "C:/Users/sv7424vd/Desktop/cards/g12.png";
-		String cardY10 = "C:/Users/sv7424vd/Desktop/cards/y10.png";
-		String cardY11 = "C:/Users/sv7424vd/Desktop/cards/y11.png";
-		String cardY12 = "C:/Users/sv7424vd/Desktop/cards/y12.png";
-		String cardX1 = "C:/Users/sv7424vd/Desktop/cards/x1.png";
-		String cardX0 = "C:/Users/sv7424vd/Desktop/cards/x0.png";
+		String cardB10 = "C:/Users/Nathan/Desktop/cards/b10.png";
+		String cardB11 = "C:/Users/Nathan/Desktop/cards/b11.png";
+		String cardB12 = "C:/Users/Nathan/Desktop/cards/b12.png";
+		String cardR10 = "C:/Users/Nathan/Desktop/cards/r10.png";
+		String cardR11 = "C:/Users/Nathan/Desktop/cards/r11.png";
+		String cardR12 = "C:/Users/Nathan/Desktop/cards/r12.png";
+		String cardG10 = "C:/Users/Nathan/Desktop/cards/g10.png";
+		String cardG11 = "C:/Users/Nathan/Desktop/cards/g11.png";
+		String cardG12 = "C:/Users/Nathan/Desktop/cards/g12.png";
+		String cardY10 = "C:/Users/Nathan/Desktop/cards/y10.png";
+		String cardY11 = "C:/Users/Nathan/Desktop/cards/y11.png";
+		String cardY12 = "C:/Users/Nathan/Desktop/cards/y12.png";
+		String cardX1 = "C:/Users/Nathan/Desktop/cards/x1.png";
+		String cardX0 = "C:/Users/Nathan/Desktop/cards/x0.png";
 		
 		
 		
@@ -260,13 +306,13 @@ public class PlayerHandGUI extends JFrame {
 
 		// Builds first row of cards
 		// Blue card bar
-		cardBar1.add(cardSlotb0);
-		cardBar1.add(cardSlotb1);
-		cardBar1.add(cardSlotb2);
-		cardBar1.add(cardSlotb3);
-		cardBar1.add(cardSlotb4);
-		cardBar1.add(cardSlotb5);
-		cardBar1.add(cardSlotb6);
+		//cardBar1.add(cardSlotb0);
+		//cardBar1.add(cardSlotb1);
+		//cardBar1.add(cardSlotb2);
+		//cardBar1.add(cardSlotb3);
+		//cardBar1.add(cardSlotb4);
+		//cardBar1.add(cardSlotb5);
+		//cardBar1.add(cardSlotb6);
 		cardBar1.add(cardSlotb7);
 		cardBar1.add(cardSlotb8);
 		cardBar1.add(cardSlotb9);
@@ -323,6 +369,71 @@ public class PlayerHandGUI extends JFrame {
 		// Add btn to main panel
 		btnBarMain.add(closeHand);
 		
+		Card card1 = playersHand.get(0);
+		System.out.println(card1);
+		Board comparison = new Board();
+		comparison.generateComparisonDeck();
+		compareDeck = comparison.getCompDeck();
+		System.out.println(compareDeck);
+		
+		for (int i = 0; i < 7; i++)
+		{
+			System.out.println(playersHand.get(i));
+		}
+		
+		// Test
+		int testHandSize = 7;
+		for (int i = 0; i < testHandSize; i++)
+		{
+			if (playersHand.get(i) == compareDeck.get(82) )
+			{
+				cardBar1.add(cardSlotb0);
+			}
+		}
+		for (int i = 0; i < testHandSize; i++)
+		{
+			if (playersHand.get(i) == compareDeck.get(83) )
+			{
+				cardBar1.add(cardSlotb1);
+			}
+		}
+		for (int i = 0; i < testHandSize; i++)
+		{
+			if (playersHand.get(i) == compareDeck.get(85) )
+			{
+				cardBar1.add(cardSlotb2);
+			}
+		}
+		for (int i = 0; i < testHandSize; i++)
+		{
+			if (playersHand.get(i) == compareDeck.get(87) )
+			{
+				cardBar1.add(cardSlotb3);
+			}
+		}
+		for (int i = 0; i < testHandSize; i++)
+		{
+			if (playersHand.get(i) == compareDeck.get(89) )
+			{
+				cardBar1.add(cardSlotb4);
+			}
+		}
+		for (int i = 0; i < testHandSize; i++)
+		{
+			if (playersHand.get(i) == compareDeck.get(91) )
+			{
+				cardBar1.add(cardSlotb5);
+			}
+		}
+		for (int i = 0; i < testHandSize; i++)
+		{
+			if (playersHand.get(i) == compareDeck.get(83) )
+			{
+				cardBar1.add(cardSlotb6);
+			}
+		}
+		
+		
 		//builds the player hand display
 		mainPanel.add(leftPanel);
 		mainPanel.add(rightPanel);
@@ -331,7 +442,6 @@ public class PlayerHandGUI extends JFrame {
 		
 	}
 
-	
 	
 	public class QuitListener implements ActionListener
 	{
