@@ -15,20 +15,10 @@ public class PlayerHandGUI extends JFrame {
 	//private ArrayList<Card> playerNum_3 = new ArrayList<Card>();
 	//private ArrayList<Card> playerNum_4 = new ArrayList<Card>();
 	private ArrayList<Card> deck;
-	private ArrayList<Card> compareDeck;
 	private ArrayList<Card> discardPile = new ArrayList<Card>();
 	
 
-	public void setDeck(ArrayList<Card> deck)
-	{
-		this.deck = deck;
-	}
-	public ArrayList<Card> getDeck()
-	{
-		return deck;
-	}
-	
-	public PlayerHandGUI(ArrayList<Card> playerDeck, ArrayList<Card> playersActiveHand)
+	public PlayerHandGUI(ArrayList<Card> playersDeck, ArrayList<Card> playersActiveHand)
 	{
 		
 		super("Player Hand");
@@ -38,8 +28,8 @@ public class PlayerHandGUI extends JFrame {
 		
 		setLayout(new BorderLayout());
 		
-		deck = playerDeck;
-		playersHand = playersActiveHand;
+		this.deck = playersDeck;
+		this.playersHand = playersActiveHand;
 		//playerNum_1 = playerNum_1Hand;
 		//playerNum_2 = playerNum_2Hand;
 		//playerNum_3 = playerNum_3Hand;
@@ -50,7 +40,6 @@ public class PlayerHandGUI extends JFrame {
 		//testPrinter();
 		System.out.println(deck);
 		System.out.println(playersHand);
-
 
 		
 		
@@ -368,70 +357,58 @@ public class PlayerHandGUI extends JFrame {
 
 		// Add btn to main panel
 		btnBarMain.add(closeHand);
+		Card blue0 = new Card(4,0);
+		Card testCard1 = new Card(4,1);
+		Card testCard2 = new Card(4,2);
+		Card testCard3 = new Card(4,3);
+		Card testCard4 = new Card(4,4);
+		Card testCard5 = new Card(4,5);
 		
-		Card card1 = playersHand.get(0);
-		System.out.println(card1);
-		Board comparison = new Board();
-		comparison.generateComparisonDeck();
-		compareDeck = comparison.getCompDeck();
-		System.out.println(compareDeck);
+		ArrayList<Card> random = new ArrayList<Card>();
 		
-		for (int i = 0; i < 7; i++)
+		random.add(blue0);
+
+		System.out.print(random);
+		boolean tester = playersHand.contains(blue0);
+		System.out.print(tester + "\n");
+		System.out.println();
+		System.out.println(playersActiveHand);
+		
+		
+		
+		
+		
+		if (playersActiveHand.contains(blue0))
 		{
-			System.out.println(playersHand.get(i));
+			cardBar1.add(cardSlotb0);
+		}
+		else if (playersHand.contains(testCard1))
+		{
+			cardBar1.add(cardSlotb1);
+		}
+		else if (playersHand.contains(testCard2))
+		{
+			cardBar1.add(cardSlotb2);
+		}
+		else if (playersHand.contains(testCard3))
+		{
+			cardBar1.add(cardSlotb3);
+		}
+		else if (playersHand.contains(testCard4))
+		{
+			cardBar1.add(cardSlotb4);
+		}
+		else if (playersHand.contains(testCard5))
+		{
+			cardBar1.add(cardSlotb5);
+		}
+		else
+		{
+			System.out.println("Object not found");
 		}
 		
-		// Test
-		int testHandSize = 7;
-		for (int i = 0; i < testHandSize; i++)
-		{
-			if (playersHand.get(i) == compareDeck.get(82) )
-			{
-				cardBar1.add(cardSlotb0);
-			}
-		}
-		for (int i = 0; i < testHandSize; i++)
-		{
-			if (playersHand.get(i) == compareDeck.get(83) )
-			{
-				cardBar1.add(cardSlotb1);
-			}
-		}
-		for (int i = 0; i < testHandSize; i++)
-		{
-			if (playersHand.get(i) == compareDeck.get(85) )
-			{
-				cardBar1.add(cardSlotb2);
-			}
-		}
-		for (int i = 0; i < testHandSize; i++)
-		{
-			if (playersHand.get(i) == compareDeck.get(87) )
-			{
-				cardBar1.add(cardSlotb3);
-			}
-		}
-		for (int i = 0; i < testHandSize; i++)
-		{
-			if (playersHand.get(i) == compareDeck.get(89) )
-			{
-				cardBar1.add(cardSlotb4);
-			}
-		}
-		for (int i = 0; i < testHandSize; i++)
-		{
-			if (playersHand.get(i) == compareDeck.get(91) )
-			{
-				cardBar1.add(cardSlotb5);
-			}
-		}
-		for (int i = 0; i < testHandSize; i++)
-		{
-			if (playersHand.get(i) == compareDeck.get(83) )
-			{
-				cardBar1.add(cardSlotb6);
-			}
-		}
+		
+		
 		
 		
 		//builds the player hand display
@@ -450,4 +427,6 @@ public class PlayerHandGUI extends JFrame {
 			System.exit(0);
 		}
 	}
+
+	
 }
