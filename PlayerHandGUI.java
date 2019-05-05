@@ -8,15 +8,10 @@ public class PlayerHandGUI extends JFrame {
 
 	private static final int WIDTH = 1000;
 	private static final int HEIGHT =  800;
-	// Testing array list, will use players hand list as an arguement later
-	private ArrayList<Card> playersHand;
-	//private ArrayList<Card> playerNum_1 = new ArrayList<Card>();
-	//private ArrayList<Card> playerNum_2 = new ArrayList<Card>();
-	//private ArrayList<Card> playerNum_3 = new ArrayList<Card>();
-	//private ArrayList<Card> playerNum_4 = new ArrayList<Card>();
+	private ArrayList<String> playersHand = new ArrayList<String>();
 	private ArrayList<Card> deck;
 	private ArrayList<Card> discardPile = new ArrayList<Card>();
-	
+
 
 	public PlayerHandGUI(ArrayList<Card> playersDeck, ArrayList<Card> playersActiveHand)
 	{
@@ -28,28 +23,14 @@ public class PlayerHandGUI extends JFrame {
 		
 		setLayout(new BorderLayout());
 		
-		this.deck = playersDeck;
-		this.playersHand = playersActiveHand;
-		//playerNum_1 = playerNum_1Hand;
-		//playerNum_2 = playerNum_2Hand;
-		//playerNum_3 = playerNum_3Hand;
-		//playerNum_4 = playerNum_4Hand;
-		
-		// Test functions
-		//testList();
-		//testPrinter();
-		System.out.println(deck);
-		System.out.println(playersHand);
+		deck = playersDeck;
+		// CONVERTS CARD OBJECTS IN DECK TO STRING OBJECTS FOR ADDING CARD BUTTONS
+		for (Card objects : playersActiveHand)
+		{
+			playersHand.add(objects.toString());
+		}
+		System.out.println("Here is the new string deck" + playersHand);
 
-		
-		
-		//System.out.println(playerNum_1);
-		//System.out.println(playerNum_2);
-		//System.out.println(playerNum_3);
-		//System.out.println(playerNum_4);
-
-		// Sort hand later?
-		//Collections.sort(playerNum_1);
 		
 		// Main panels
 		JPanel mainPanel = new JPanel();
@@ -291,120 +272,235 @@ public class PlayerHandGUI extends JFrame {
 		JButton cardSlotx1 = new JButton(new ImageIcon(((new ImageIcon(cardX1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
 		JButton cardSlotx0 = new JButton(new ImageIcon(((new ImageIcon(cardX0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
 		
-		
-
-		// Builds first row of cards
-		// Blue card bar
-		//cardBar1.add(cardSlotb0);
-		//cardBar1.add(cardSlotb1);
-		//cardBar1.add(cardSlotb2);
-		//cardBar1.add(cardSlotb3);
-		//cardBar1.add(cardSlotb4);
-		//cardBar1.add(cardSlotb5);
-		//cardBar1.add(cardSlotb6);
-		cardBar1.add(cardSlotb7);
-		cardBar1.add(cardSlotb8);
-		cardBar1.add(cardSlotb9);
-		// Red card bar
-		cardBar2.add(cardSlotr0);
-		cardBar2.add(cardSlotr1);
-		cardBar2.add(cardSlotr2);
-		cardBar2.add(cardSlotr3);
-		cardBar2.add(cardSlotr4);
-		cardBar2.add(cardSlotr5);
-		cardBar2.add(cardSlotr6);
-		cardBar2.add(cardSlotr7);
-		cardBar2.add(cardSlotr8);
-		cardBar2.add(cardSlotr9);
-		// Green card bar
-		cardBar3.add(cardSlotg0);
-		cardBar3.add(cardSlotg1);
-		cardBar3.add(cardSlotg2);
-		cardBar3.add(cardSlotg3);
-		cardBar3.add(cardSlotg4);
-		cardBar3.add(cardSlotg5);
-		cardBar3.add(cardSlotg6);
-		cardBar3.add(cardSlotg7);
-		cardBar3.add(cardSlotg8);
-		cardBar3.add(cardSlotg9);
-		// Yellow card bar
-		cardBar4.add(cardSloty0);
-		cardBar4.add(cardSloty1);
-		cardBar4.add(cardSloty2);
-		cardBar4.add(cardSloty3);
-		cardBar4.add(cardSloty4);
-		cardBar4.add(cardSloty5);
-		cardBar4.add(cardSloty6);
-		cardBar4.add(cardSloty7);
-		cardBar4.add(cardSloty8);
-		cardBar4.add(cardSloty9);
-		// Special card bar
-		cardBar5.add(cardSlotb10);
-		cardBar5.add(cardSlotb11);
-		cardBar5.add(cardSlotb12);
-		cardBar5.add(cardSlotr10);
-		cardBar5.add(cardSlotr11);
-		cardBar5.add(cardSlotr12);
-		cardBar5.add(cardSlotg10);
-		cardBar5.add(cardSlotg11);
-		cardBar5.add(cardSlotg12);
-		cardBar5.add(cardSloty10);
-		cardBar5.add(cardSloty11);
-		cardBar5.add(cardSloty12);
-		cardBar5.add(cardSlotx1);
-		cardBar5.add(cardSlotx0);
-
+	
 
 		// Add btn to main panel
 		btnBarMain.add(closeHand);
-		Card blue0 = new Card(4,0);
-		Card testCard1 = new Card(4,1);
-		Card testCard2 = new Card(4,2);
-		Card testCard3 = new Card(4,3);
-		Card testCard4 = new Card(4,4);
-		Card testCard5 = new Card(4,5);
-		
-		ArrayList<Card> random = new ArrayList<Card>();
-		
-		random.add(blue0);
 
-		System.out.print(random);
-		boolean tester = playersHand.contains(blue0);
-		System.out.print(tester + "\n");
-		System.out.println();
-		System.out.println(playersActiveHand);
+
+
+		// Adds red cards to players hand
+		if (playersHand.contains("Red 0"))
+		{
+			cardBar2.add(cardSlotr0);
+		}
+		if (playersHand.contains("Red 1"))
+		{
+			cardBar2.add(cardSlotr1);
+		}
+		if (playersHand.contains("Red 2"))
+		{
+			cardBar2.add(cardSlotr2);
+		}
+		if (playersHand.contains("Red 3"))
+		{
+			cardBar2.add(cardSlotr3);
+		}
+		if (playersHand.contains("Red 4"))
+		{
+			cardBar2.add(cardSlotr4);
+		}
+		if (playersHand.contains("Red 5"))
+		{
+			cardBar2.add(cardSlotr5);
+		}
+		if (playersHand.contains("Red 6"))
+		{
+			cardBar2.add(cardSlotr6);
+		}
+		if (playersHand.contains("Red 7"))
+		{
+			cardBar2.add(cardSlotr7);
+		}
+		if (playersHand.contains("Red 8"))
+		{
+			cardBar2.add(cardSlotr8);
+		}
+		if (playersHand.contains("Red 9"))
+		{
+			cardBar2.add(cardSlotr9);
+		}
+		if (playersHand.contains("Red Skip"))
+		{
+			cardBar2.add(cardSlotr10);
+		}
+		if (playersHand.contains("Red Reverse"))
+		{
+			cardBar2.add(cardSlotr11);
+		}
+		if (playersHand.contains("Red Draw 2"))
+		{
+			cardBar2.add(cardSlotr12);
+		}
 		
-		
-		
-		
-		
-		if (playersActiveHand.contains(blue0))
+		// Adds blue cards to players hand
+		if (playersHand.contains("Blue 0"))
 		{
 			cardBar1.add(cardSlotb0);
 		}
-		else if (playersHand.contains(testCard1))
+		if (playersHand.contains("Blue 1"))
 		{
 			cardBar1.add(cardSlotb1);
 		}
-		else if (playersHand.contains(testCard2))
+		if (playersHand.contains("Blue 2"))
 		{
 			cardBar1.add(cardSlotb2);
 		}
-		else if (playersHand.contains(testCard3))
+		if (playersHand.contains("Blue 3"))
 		{
 			cardBar1.add(cardSlotb3);
 		}
-		else if (playersHand.contains(testCard4))
+		if (playersHand.contains("Blue 4"))
 		{
 			cardBar1.add(cardSlotb4);
 		}
-		else if (playersHand.contains(testCard5))
+		if (playersHand.contains("Blue 5"))
 		{
 			cardBar1.add(cardSlotb5);
 		}
-		else
+		if (playersHand.contains("Blue 6"))
 		{
-			System.out.println("Object not found");
+			cardBar1.add(cardSlotb6);
+		}
+		if (playersHand.contains("Blue 7"))
+		{
+			cardBar1.add(cardSlotb7);
+		}
+		if (playersHand.contains("Blue 8"))
+		{
+			cardBar1.add(cardSlotb8);
+		}
+		if (playersHand.contains("Blue 9"))
+		{
+			cardBar1.add(cardSlotb9);
+		}
+		if (playersHand.contains("Blue Skip"))
+		{
+			cardBar1.add(cardSlotb10);
+		}
+		if (playersHand.contains("Blue Reverse"))
+		{
+			cardBar1.add(cardSlotb11);
+		}
+		if (playersHand.contains("Blue Draw 2"))
+		{
+			cardBar1.add(cardSlotb12);
+		}
+		// for adding Green Cards
+		if (playersHand.contains("Green 0"))
+		{
+			cardBar3.add(cardSlotg0);
+		}
+		if (playersHand.contains("Green 1"))
+		{
+			cardBar3.add(cardSlotg1);
+		}
+		if (playersHand.contains("Green 2"))
+		{
+			cardBar3.add(cardSlotg2);
+		}
+		if (playersHand.contains("Green 3"))
+		{
+			cardBar3.add(cardSlotg3);
+		}
+		if (playersHand.contains("Green 4"))
+		{
+			cardBar3.add(cardSlotg4);
+		}
+		if (playersHand.contains("Green 5"))
+		{
+			cardBar3.add(cardSlotg5);
+		}
+		if (playersHand.contains("Green 6"))
+		{
+			cardBar3.add(cardSlotg6);
+		}
+		if (playersHand.contains("Green 7"))
+		{
+			cardBar3.add(cardSlotg7);
+		}
+		if (playersHand.contains("Green 8"))
+		{
+			cardBar3.add(cardSlotg8);
+		}
+		if (playersHand.contains("Green 9"))
+		{
+			cardBar3.add(cardSlotg9);
+		}
+		if (playersHand.contains("Green Skip"))
+		{
+			cardBar3.add(cardSlotg10);
+		}
+		if (playersHand.contains("Green Reverse"))
+		{
+			cardBar3.add(cardSlotg11);
+		}
+		if (playersHand.contains("Green Draw 2"))
+		{
+			cardBar3.add(cardSlotg12);
+		}
+		
+		// for adding yellow cards
+		if (playersHand.contains("Yellow 0"))
+		{
+			cardBar4.add(cardSloty0);
+		}
+		if (playersHand.contains("Yellow 1"))
+		{
+			cardBar4.add(cardSloty1);
+		}
+		if (playersHand.contains("Yellow 2"))
+		{
+			cardBar4.add(cardSloty2);
+		}
+		if (playersHand.contains("Yellow 3"))
+		{
+			cardBar4.add(cardSloty3);
+		}
+		if (playersHand.contains("Yellow 4"))
+		{
+			cardBar4.add(cardSloty4);
+		}
+		if (playersHand.contains("Yellow 5"))
+		{
+			cardBar4.add(cardSloty5);
+		}
+		if (playersHand.contains("Yellow 6"))
+		{
+			cardBar4.add(cardSloty6);
+		}
+		if (playersHand.contains("Yellow 7"))
+		{
+			cardBar4.add(cardSloty7);
+		}
+		if (playersHand.contains("Yellow 8"))
+		{
+			cardBar4.add(cardSloty8);
+		}
+		if (playersHand.contains("Yellow 9"))
+		{
+			cardBar4.add(cardSloty9);
+		}
+		if (playersHand.contains("Yellow Skip"))
+		{
+			cardBar4.add(cardSloty10);
+		}
+		if (playersHand.contains("Yellow Reverse"))
+		{
+			cardBar4.add(cardSloty11);
+		}
+		if (playersHand.contains("Yellow Draw 2"))
+		{
+			cardBar4.add(cardSloty12);
+		}
+		// Adds Special No Color Cards
+		if (playersHand.contains("Wild Card"))
+		{
+			cardBar5.add(cardSlotx0);
+		}
+		if (playersHand.contains("Wild Draw 4"))
+		{
+			cardBar5.add(cardSlotx1);
 		}
 		
 		
@@ -418,6 +514,7 @@ public class PlayerHandGUI extends JFrame {
 		add(mainPanel);
 		
 	}
+
 
 	
 	public class QuitListener implements ActionListener

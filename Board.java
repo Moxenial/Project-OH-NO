@@ -11,19 +11,7 @@ public class Board implements DefaultRules{
 	private Card currentPlayedCard;
 	
 	
-	public void createTestDeck()
-	{
-		Card blue0 = new Card(4,0);
-		Card blue1 = new Card(4,1);
-		Card blue2 = new Card(4,2);
-		Card blue3 = new Card(4,3);
-		Card blue4 = new Card(4,4);
-		testDeck.add(blue0);
-		testDeck.add(blue1);
-		testDeck.add(blue2);
-		testDeck.add(blue3);
-		testDeck.add(blue4);
-	}
+
 	
 	
 	//accessors
@@ -195,7 +183,7 @@ public class Board implements DefaultRules{
 		this.deck = new ArrayList<Card>();
 		this.discardPile = new ArrayList<Card>();
 		this.currentPlayedCard = new Card(1, 1);
-		this.testDeck = new ArrayList<Card>();
+
 
 	}
 	
