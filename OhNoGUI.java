@@ -5,31 +5,66 @@ import java.util.ArrayList;
 
 public class OhNoGUI extends JFrame {
 
-	// practice gui build #1
+
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = 400;
 	public static final int ROWS = 3;
 	public static final int COLUMNS = 2;
-	public int numPlayers = 2;
+	private JTextField playerCountEntry = new JTextField(1);
+	private int numPlayers;
+	private int currentPlayer;
 	private ArrayList<Card> deck = new ArrayList<Card>();
+	private ArrayList<Card> playPile = new ArrayList<Card>();
 	private ArrayList<Card> playerNum_1 = new ArrayList<Card>();
 	private ArrayList<Card> playerNum_2 = new ArrayList<Card>();
 	private ArrayList<Card> playerNum_3 = new ArrayList<Card>();
 	private ArrayList<Card> playerNum_4 = new ArrayList<Card>();
 	
+	// This should be to build the start of the game, who goes first,
+	// deal out a hand, get everyone hands and set  the first play card.
+	// Thinking the arraylists need to be able to be static referenced through the different class
+	// for consisitencey.
 	public void gameBuilder()
 	{
-
-		Board cards = new Board();
-		cards.generateStandardDeck();
-		deck = cards.getDeck();
-		Player playing = new Player(deck, numPlayers);
+		// first player to go random later
+		int playerTurn = 1;
+		
+		Player playing = new Player(playerTurn);
+		playing.setPlayerCount(numPlayers);
 		playerNum_1 = playing.getPlayer1Hand();
 		playerNum_2 = playing.getPlayer2Hand();
 		playerNum_3 = playing.getPlayer3Hand();
 		playerNum_4 = playing.getPlayer4Hand();
-	}
+		deck = playing.getDeck();
+		playPile.add(deck.get(0));
+		deck.remove(0);
+		playing.setDeck(deck);
 		
+
+		
+		
+		
+	}
+	
+	public void gameRunning()
+	{
+		// get the first player
+		currentPlayer = 1;
+		// Show current players number in the BOARD GUI
+		// gets initial card for play pile
+		
+		
+
+		// player goes
+		
+		//updateBoard();
+		// add players played card to play pile
+		
+		// How do we update the decks of each player
+		
+		
+	}
+	
 	public OhNoGUI()
 		{
 			super();
@@ -131,7 +166,6 @@ public class OhNoGUI extends JFrame {
 		private static final int WIDTH = 500;
 		private static final int HEIGHT = 300;
 		private JPanel playerMain = new JPanel();
-		private JTextField playerCount = new JTextField(1);
 		private JLabel header = new JLabel("How many people will be playing? 2-4 Players");
 		private JButton enterPlayer = new JButton("Play");
 		
@@ -145,17 +179,16 @@ public class OhNoGUI extends JFrame {
 			
 			header.setFont(new Font("Tahoma", Font.BOLD, 20));
 			playerMain.add(header, BorderLayout.NORTH);
-			playerMain.add(playerCount, BorderLayout.CENTER);
+			playerMain.add(playerCountEntry, BorderLayout.CENTER);
 			playerMain.add(enterPlayer, BorderLayout.SOUTH);
 			enterPlayer.addActionListener(new EnterPlayerListener());
 			
 			// needs to send number of players to other parts of the program
-			
+
 			
 			add(playerMain);
 		}
 	}
-
 
 	public class RuleBook extends JFrame
 	{
@@ -237,8 +270,6 @@ public class OhNoGUI extends JFrame {
 			btnQuitGame.addActionListener(new OhNoQuitListener());
 			ButtonPanel.add(btnQuitGame);
 			
-			
-			
 			JPanel BoardPanel = new JPanel();
 			frame.getContentPane().add(BoardPanel, BorderLayout.CENTER);
 			BoardPanel.setLayout(new GridLayout(9, 1, 0, 0));
@@ -258,9 +289,7 @@ public class OhNoGUI extends JFrame {
 			JPanel panel_3 = new JPanel();
 			panel_3.setBackground(Color.BLACK);
 			row1panel.add(panel_3);
-			
-			// Test for card back on 
-			//String cardBack = "C:/Users/Nathan/Desktop/cards/facedown.png";
+
 			
 			JLabel lblOhno = new JLabel("OH-NO");
 			lblOhno.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -356,7 +385,7 @@ public class OhNoGUI extends JFrame {
 			playPile_Upper_panel.setBackground(Color.GRAY);
 			row3panel.add(playPile_Upper_panel);
 			
-			JLabel lblPlayPile = new JLabel("OH-NO");
+			JLabel lblPlayPile = new JLabel("Play Pile");
 			lblPlayPile.setFont(new Font("Tahoma", Font.BOLD, 20));
 			lblPlayPile.setForeground(Color.RED);
 			lblPlayPile.setBackground(Color.BLACK);
@@ -409,6 +438,7 @@ public class OhNoGUI extends JFrame {
 			playPile_Bottom_panel.setBackground(Color.GRAY);
 			row4panel.add(playPile_Bottom_panel);
 			
+			// Change to add current card to play pile with image
 			JLabel lblPlayPileBottom = new JLabel("OH-NO");
 			lblPlayPileBottom.setFont(new Font("Tahoma", Font.BOLD, 20));
 			lblPlayPileBottom.setForeground(Color.RED);
@@ -428,23 +458,41 @@ public class OhNoGUI extends JFrame {
 			panel_44.setBackground(Color.WHITE);
 			row4panel.add(panel_44);
 			
+			
+			
+			// Label for next Player
 			JPanel row5panel = new JPanel();
-			row5panel.setBackground(Color.WHITE);
+			row5panel.setBackground(Color.DARK_GRAY);
+			JLabel playerTurnLbl = new JLabel("Player # goes: ");
+			row5panel.add(playerTurnLbl);
 			BoardPanel.add(row5panel);
 			
+			
+			// Display player Number
 			JPanel row6panel = new JPanel();
-			row6panel.setBackground(Color.WHITE);
+			row6panel.setBackground(Color.LIGHT_GRAY);
+			// Change to text area later
+			JLabel playerNumLbl = new JLabel("1,2,3,4");
+			row6panel.add(playerNumLbl);
 			BoardPanel.add(row6panel);
+			
+			
+			
+			
+			
 			
 			JPanel row7panel = new JPanel();
 			row7panel.setBackground(Color.WHITE);
 			BoardPanel.add(row7panel);
 			
-			
 			// Blank row
 			JPanel row8panel = new JPanel();
 			BoardPanel.add(row8panel);
 			row8panel.setLayout(new GridLayout(1, 9, 0, 0));
+			
+			
+			
+			
 			
 			JPanel panel_18 = new JPanel();
 			panel_18.setBackground(Color.WHITE);
@@ -575,8 +623,11 @@ public class OhNoGUI extends JFrame {
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			int numOfPlayers = 2;
-			//playing.gameRunning(numOfPlayers);
+			
+			String userStr = playerCountEntry.getText();
+			int numOfPlayers = Integer.parseInt(userStr);
+			numPlayers = numOfPlayers;
+			
 			gameBuilder();
 			// Sets boardGUi to visible
 			boardGUI game = new boardGUI();

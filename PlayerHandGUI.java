@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class PlayerHandGUI extends JFrame {
 
@@ -10,27 +9,159 @@ public class PlayerHandGUI extends JFrame {
 	private static final int HEIGHT =  800;
 	private ArrayList<String> playersHand = new ArrayList<String>();
 	private ArrayList<Card> deck;
-	private ArrayList<Card> discardPile = new ArrayList<Card>();
+	private ArrayList<String> deckStr = new ArrayList<String>(deck.size());
+	private ArrayList<Card> playPile = new ArrayList<Card>();
+	private ArrayList<String> playPileStr = new ArrayList<String>();
+	private ArrayList<Card> newHand = new ArrayList<Card>(playersHand.size());
 
-
+	// Imports card images for buttons
+	// Blue Cards
+	
+	String cardB0 = "C:/Users/Nate/Desktop/cards/b0.png";
+	String cardB1 = "C:/Users/Nate/Desktop/cards/b1.png";
+	String cardB2 = "C:/Users/Nate/Desktop/cards/b2.png";
+	String cardB3 = "C:/Users/Nate/Desktop/cards/b3.png";
+	String cardB4 = "C:/Users/Nate/Desktop/cards/b4.png";
+	String cardB5 = "C:/Users/Nate/Desktop/cards/b5.png";
+	String cardB6 = "C:/Users/Nate/Desktop/cards/b6.png";
+	String cardB7 = "C:/Users/Nate/Desktop/cards/b7.png";
+	String cardB8 = "C:/Users/Nate/Desktop/cards/b8.png";
+	String cardB9 = "C:/Users/Nate/Desktop/cards/b9.png";
+	
+	// Red Cards
+	String cardR0 = "C:/Users/Nate/Desktop/cards/r0.png";
+	String cardR1 = "C:/Users/Nate/Desktop/cards/r1.png";
+	String cardR2 = "C:/Users/Nate/Desktop/cards/r2.png";
+	String cardR3 = "C:/Users/Nate/Desktop/cards/r3.png";
+	String cardR4 = "C:/Users/Nate/Desktop/cards/r4.png";
+	String cardR5 = "C:/Users/Nate/Desktop/cards/r5.png";
+	String cardR6 = "C:/Users/Nate/Desktop/cards/r6.png";
+	String cardR7 = "C:/Users/Nate/Desktop/cards/r7.png";
+	String cardR8 = "C:/Users/Nate/Desktop/cards/r8.png";
+	String cardR9 = "C:/Users/Nate/Desktop/cards/r9.png";
+	
+	// Green Cards
+	String cardG0 = "C:/Users/Nate/Desktop/cards/g0.png";
+	String cardG1 = "C:/Users/Nate/Desktop/cards/g1.png";
+	String cardG2 = "C:/Users/Nate/Desktop/cards/g2.png";
+	String cardG3 = "C:/Users/Nate/Desktop/cards/g3.png";
+	String cardG4 = "C:/Users/Nate/Desktop/cards/g4.png";
+	String cardG5 = "C:/Users/Nate/Desktop/cards/g5.png";
+	String cardG6 = "C:/Users/Nate/Desktop/cards/g6.png";
+	String cardG7 = "C:/Users/Nate/Desktop/cards/g7.png";
+	String cardG8 = "C:/Users/Nate/Desktop/cards/g8.png";
+	String cardG9 = "C:/Users/Nate/Desktop/cards/g9.png";
+	
+	// Yellow Cards
+	String cardY0 = "C:/Users/Nate/Desktop/cards/y0.png";
+	String cardY1 = "C:/Users/Nate/Desktop/cards/y1.png";
+	String cardY2 = "C:/Users/Nate/Desktop/cards/y2.png";
+	String cardY3 = "C:/Users/Nate/Desktop/cards/y3.png";
+	String cardY4 = "C:/Users/Nate/Desktop/cards/y4.png";
+	String cardY5 = "C:/Users/Nate/Desktop/cards/y5.png";
+	String cardY6 = "C:/Users/Nate/Desktop/cards/y6.png";
+	String cardY7 = "C:/Users/Nate/Desktop/cards/y7.png";
+	String cardY8 = "C:/Users/Nate/Desktop/cards/y8.png";
+	String cardY9 = "C:/Users/Nate/Desktop/cards/y9.png";
+	
+	// Special cards
+	String cardB10 = "C:/Users/Nate/Desktop/cards/b10.png";
+	String cardB11 = "C:/Users/Nate/Desktop/cards/b11.png";
+	String cardB12 = "C:/Users/Nate/Desktop/cards/b12.png";
+	String cardR10 = "C:/Users/Nate/Desktop/cards/r10.png";
+	String cardR11 = "C:/Users/Nate/Desktop/cards/r11.png";
+	String cardR12 = "C:/Users/Nate/Desktop/cards/r12.png";
+	String cardG10 = "C:/Users/Nate/Desktop/cards/g10.png";
+	String cardG11 = "C:/Users/Nate/Desktop/cards/g11.png";
+	String cardG12 = "C:/Users/Nate/Desktop/cards/g12.png";
+	String cardY10 = "C:/Users/Nate/Desktop/cards/y10.png";
+	String cardY11 = "C:/Users/Nate/Desktop/cards/y11.png";
+	String cardY12 = "C:/Users/Nate/Desktop/cards/y12.png";
+	String cardX1 = "C:/Users/Nate/Desktop/cards/x1.png";
+	String cardX0 = "C:/Users/Nate/Desktop/cards/x0.png";
+	
+	// Creates buttons out of each card from png files
+			// Blue Buttons
+			JButton cardSlotb0 = new JButton(new ImageIcon(((new ImageIcon(cardB0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb1 = new JButton(new ImageIcon(((new ImageIcon(cardB1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb2 = new JButton(new ImageIcon(((new ImageIcon(cardB2).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb3 = new JButton(new ImageIcon(((new ImageIcon(cardB3).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb4 = new JButton(new ImageIcon(((new ImageIcon(cardB4).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb5 = new JButton(new ImageIcon(((new ImageIcon(cardB5).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb6 = new JButton(new ImageIcon(((new ImageIcon(cardB6).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb7 = new JButton(new ImageIcon(((new ImageIcon(cardB7).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb8 = new JButton(new ImageIcon(((new ImageIcon(cardB8).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb9 = new JButton(new ImageIcon(((new ImageIcon(cardB9).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			// Red Buttons
+			JButton cardSlotr0 = new JButton(new ImageIcon(((new ImageIcon(cardR0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr1 = new JButton(new ImageIcon(((new ImageIcon(cardR1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr2 = new JButton(new ImageIcon(((new ImageIcon(cardR2).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr3 = new JButton(new ImageIcon(((new ImageIcon(cardR3).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr4 = new JButton(new ImageIcon(((new ImageIcon(cardR4).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr5 = new JButton(new ImageIcon(((new ImageIcon(cardR5).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr6 = new JButton(new ImageIcon(((new ImageIcon(cardR6).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr7 = new JButton(new ImageIcon(((new ImageIcon(cardR7).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr8 = new JButton(new ImageIcon(((new ImageIcon(cardR8).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr9 = new JButton(new ImageIcon(((new ImageIcon(cardR9).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			// Green Buttons
+			JButton cardSlotg0 = new JButton(new ImageIcon(((new ImageIcon(cardG0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg1 = new JButton(new ImageIcon(((new ImageIcon(cardG1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg2 = new JButton(new ImageIcon(((new ImageIcon(cardG2).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg3 = new JButton(new ImageIcon(((new ImageIcon(cardG3).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg4 = new JButton(new ImageIcon(((new ImageIcon(cardG4).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg5 = new JButton(new ImageIcon(((new ImageIcon(cardG5).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg6 = new JButton(new ImageIcon(((new ImageIcon(cardG6).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg7 = new JButton(new ImageIcon(((new ImageIcon(cardG7).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg8 = new JButton(new ImageIcon(((new ImageIcon(cardG8).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg9 = new JButton(new ImageIcon(((new ImageIcon(cardG9).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			// Yellow Buttons
+			JButton cardSloty0 = new JButton(new ImageIcon(((new ImageIcon(cardY0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty1 = new JButton(new ImageIcon(((new ImageIcon(cardY1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty2 = new JButton(new ImageIcon(((new ImageIcon(cardY2).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty3 = new JButton(new ImageIcon(((new ImageIcon(cardY3).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty4 = new JButton(new ImageIcon(((new ImageIcon(cardY4).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty5 = new JButton(new ImageIcon(((new ImageIcon(cardY5).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty6 = new JButton(new ImageIcon(((new ImageIcon(cardY6).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty7 = new JButton(new ImageIcon(((new ImageIcon(cardY7).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty8 = new JButton(new ImageIcon(((new ImageIcon(cardY8).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty9 = new JButton(new ImageIcon(((new ImageIcon(cardY9).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			// Special Cards
+			JButton cardSlotb10 = new JButton(new ImageIcon(((new ImageIcon(cardB10).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb11 = new JButton(new ImageIcon(((new ImageIcon(cardB11).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotb12 = new JButton(new ImageIcon(((new ImageIcon(cardB12).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr10 = new JButton(new ImageIcon(((new ImageIcon(cardR10).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr11 = new JButton(new ImageIcon(((new ImageIcon(cardR11).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotr12 = new JButton(new ImageIcon(((new ImageIcon(cardR12).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg10 = new JButton(new ImageIcon(((new ImageIcon(cardG10).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg11 = new JButton(new ImageIcon(((new ImageIcon(cardG11).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotg12 = new JButton(new ImageIcon(((new ImageIcon(cardG12).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty10 = new JButton(new ImageIcon(((new ImageIcon(cardY10).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty11 = new JButton(new ImageIcon(((new ImageIcon(cardY11).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSloty12 = new JButton(new ImageIcon(((new ImageIcon(cardY12).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotx1 = new JButton(new ImageIcon(((new ImageIcon(cardX1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+			JButton cardSlotx0 = new JButton(new ImageIcon(((new ImageIcon(cardX0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+	
 	public PlayerHandGUI(ArrayList<Card> playersDeck, ArrayList<Card> playersActiveHand)
 	{
 		
 		super("Player Hand");
 		setSize(WIDTH, HEIGHT);
-		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
 		setLayout(new BorderLayout());
 		
+		
 		deck = playersDeck;
+		for (Card deck : playersDeck)
+		{
+			
+		}
 		// CONVERTS CARD OBJECTS IN DECK TO STRING OBJECTS FOR ADDING CARD BUTTONS
 		for (Card objects : playersActiveHand)
 		{
 			playersHand.add(objects.toString());
 		}
 		System.out.println("Here is the new string deck" + playersHand);
-
+		
 		
 		// Main panels
 		JPanel mainPanel = new JPanel();
@@ -39,31 +170,21 @@ public class PlayerHandGUI extends JFrame {
 		JPanel btnBarMain = new JPanel();
 		
 		// Panels within the main
-		JPanel currentCard = new JPanel();
+		JPanel playAndDraw = new JPanel();
 		JPanel otherPlayers = new JPanel();
 		JPanel player1 = new JPanel();
 		JPanel player2 = new JPanel();
 		JPanel player3 = new JPanel();
 		JPanel player4 = new JPanel();
 		JPanel cardBar1 = new JPanel();
-		JPanel cardBtn1 = new JPanel();
 		JPanel cardBar2 = new JPanel();
-		JPanel cardBtn2 = new JPanel();
 		JPanel cardBar3 = new JPanel();
-		JPanel cardBtn3 = new JPanel();
 		JPanel cardBar4 = new JPanel();
-		JPanel cardBtn4 = new JPanel();
 		JPanel cardBar5 = new JPanel();
 		
 		// Main btn bar -- switch to close hand later!!!!
 		JButton closeHand = new JButton("QUIT GAME");
 		closeHand.addActionListener(new QuitListener());
-		// Card buttons
-		JPanel playCard1 = new JPanel();
-		JPanel playCard2 = new JPanel();
-		JPanel playCard3 = new JPanel();
-		JPanel playCard4 = new JPanel();
-		
 		
 		// sets background color for main panels
 		mainPanel.setBackground(Color.WHITE);
@@ -74,23 +195,24 @@ public class PlayerHandGUI extends JFrame {
 		// sets layouts of panels
 		mainPanel.setLayout(new GridLayout(1,2));
 		leftPanel.setLayout(new GridLayout(2,1));
-		rightPanel.setLayout(new GridLayout(9,1));
+		rightPanel.setLayout(new GridLayout(5,1));
 		btnBarMain.setLayout(new FlowLayout());
 		
 		// temp must get card and display from board
-		currentCard.setLayout(new GridLayout(2,2));
-		String currentCardPlayed = "C:/Users/sv7424vd/Desktop/cards/x0.png";
+		playAndDraw.setLayout(new GridLayout(2,2));
+		String currentCardPlayed = "C:/Users/Nate/Desktop/cards/x0.png";
 		JButton cardSlotPlay = new JButton(new ImageIcon(((new ImageIcon(currentCardPlayed).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		currentCard.setBackground(Color.WHITE);
+		playAndDraw.setBackground(Color.WHITE);
 		JLabel playPile = new JLabel("Play Pile");
-		currentCard.add(playPile);
-		currentCard.add(cardSlotPlay);
+		playAndDraw.add(playPile);
+		playAndDraw.add(cardSlotPlay);
 		
-		String drawBtnCard = "C:/Users/sv7424vd/Desktop/cards/facedown.png";
+		String drawBtnCard = "C:/Users/Nate/Desktop/cards/facedown.png";
 		JButton drawBtn = new JButton(new ImageIcon(((new ImageIcon(drawBtnCard).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+		drawBtn.addActionListener(new DrawActionListener());
 		JLabel drawPile = new JLabel("Draw Pile");
-		currentCard.add(drawPile);
-		currentCard.add(drawBtn);
+		playAndDraw.add(drawPile);
+		playAndDraw.add(drawBtn);
 		
 		// temp must get other players # cards remaining and display
 		otherPlayers.setBackground(Color.DARK_GRAY);
@@ -113,166 +235,22 @@ public class PlayerHandGUI extends JFrame {
 		otherPlayers.add(player4);
 		
 		
-		leftPanel.add(currentCard);
+		leftPanel.add(playAndDraw);
 		leftPanel.add(otherPlayers);
-		
-		
-		// Card play buttons
-		cardBtn1.add(playCard1);
-		cardBtn2.add(playCard2);
-		cardBtn3.add(playCard3);
-		cardBtn4.add(playCard4);
-		
+
 		// Builds the players hand panel
 		rightPanel.add(cardBar1);
-		rightPanel.add(cardBtn1);
 		rightPanel.add(cardBar2);
-		rightPanel.add(cardBtn2);
 		rightPanel.add(cardBar3);
-		rightPanel.add(cardBtn3);
 		rightPanel.add(cardBar4);
-		rightPanel.add(cardBtn4);
 		rightPanel.add(cardBar5);
 
-		
-		
-		// Imports card images for buttons
-		// Blue Cards
-		String cardB0 = "C:/Users/Nathan/Desktop/cards/b0.png";
-		String cardB1 = "C:/Users/Nathan/Desktop/cards/b1.png";
-		String cardB2 = "C:/Users/Nathan/Desktop/cards/b2.png";
-		String cardB3 = "C:/Users/Nathan/Desktop/cards/b3.png";
-		String cardB4 = "C:/Users/Nathan/Desktop/cards/b4.png";
-		String cardB5 = "C:/Users/Nathan/Desktop/cards/b5.png";
-		String cardB6 = "C:/Users/Nathan/Desktop/cards/b6.png";
-		String cardB7 = "C:/Users/Nathan/Desktop/cards/b7.png";
-		String cardB8 = "C:/Users/Nathan/Desktop/cards/b8.png";
-		String cardB9 = "C:/Users/Nathan/Desktop/cards/b9.png";
-		
-		// Red Cards
-		String cardR0 = "C:/Users/Nathan/Desktop/cards/r0.png";
-		String cardR1 = "C:/Users/Nathan/Desktop/cards/r1.png";
-		String cardR2 = "C:/Users/Nathan/Desktop/cards/r2.png";
-		String cardR3 = "C:/Users/Nathan/Desktop/cards/r3.png";
-		String cardR4 = "C:/Users/Nathan/Desktop/cards/r4.png";
-		String cardR5 = "C:/Users/Nathan/Desktop/cards/r5.png";
-		String cardR6 = "C:/Users/Nathan/Desktop/cards/r6.png";
-		String cardR7 = "C:/Users/Nathan/Desktop/cards/r7.png";
-		String cardR8 = "C:/Users/Nathan/Desktop/cards/r8.png";
-		String cardR9 = "C:/Users/Nathan/Desktop/cards/r9.png";
-		
-		// Green Cards
-		String cardG0 = "C:/Users/Nathan/Desktop/cards/g0.png";
-		String cardG1 = "C:/Users/Nathan/Desktop/cards/g1.png";
-		String cardG2 = "C:/Users/Nathan/Desktop/cards/g2.png";
-		String cardG3 = "C:/Users/Nathan/Desktop/cards/g3.png";
-		String cardG4 = "C:/Users/Nathan/Desktop/cards/g4.png";
-		String cardG5 = "C:/Users/Nathan/Desktop/cards/g5.png";
-		String cardG6 = "C:/Users/Nathan/Desktop/cards/g6.png";
-		String cardG7 = "C:/Users/Nathan/Desktop/cards/g7.png";
-		String cardG8 = "C:/Users/Nathan/Desktop/cards/g8.png";
-		String cardG9 = "C:/Users/Nathan/Desktop/cards/g9.png";
-		
-		// Yellow Cards
-		String cardY0 = "C:/Users/Nathan/Desktop/cards/y0.png";
-		String cardY1 = "C:/Users/Nathan/Desktop/cards/y1.png";
-		String cardY2 = "C:/Users/Nathan/Desktop/cards/y2.png";
-		String cardY3 = "C:/Users/Nathan/Desktop/cards/y3.png";
-		String cardY4 = "C:/Users/Nathan/Desktop/cards/y4.png";
-		String cardY5 = "C:/Users/Nathan/Desktop/cards/y5.png";
-		String cardY6 = "C:/Users/Nathan/Desktop/cards/y6.png";
-		String cardY7 = "C:/Users/Nathan/Desktop/cards/y7.png";
-		String cardY8 = "C:/Users/Nathan/Desktop/cards/y8.png";
-		String cardY9 = "C:/Users/Nathan/Desktop/cards/y9.png";
-		
-		// Special cards
-		String cardB10 = "C:/Users/Nathan/Desktop/cards/b10.png";
-		String cardB11 = "C:/Users/Nathan/Desktop/cards/b11.png";
-		String cardB12 = "C:/Users/Nathan/Desktop/cards/b12.png";
-		String cardR10 = "C:/Users/Nathan/Desktop/cards/r10.png";
-		String cardR11 = "C:/Users/Nathan/Desktop/cards/r11.png";
-		String cardR12 = "C:/Users/Nathan/Desktop/cards/r12.png";
-		String cardG10 = "C:/Users/Nathan/Desktop/cards/g10.png";
-		String cardG11 = "C:/Users/Nathan/Desktop/cards/g11.png";
-		String cardG12 = "C:/Users/Nathan/Desktop/cards/g12.png";
-		String cardY10 = "C:/Users/Nathan/Desktop/cards/y10.png";
-		String cardY11 = "C:/Users/Nathan/Desktop/cards/y11.png";
-		String cardY12 = "C:/Users/Nathan/Desktop/cards/y12.png";
-		String cardX1 = "C:/Users/Nathan/Desktop/cards/x1.png";
-		String cardX0 = "C:/Users/Nathan/Desktop/cards/x0.png";
-		
-		
-		
 		// Creates the first row holding cards on the left side of the player display
 		cardBar1.setLayout(new GridLayout(1,9));
 		cardBar2.setLayout(new GridLayout(1,9));
 		cardBar3.setLayout(new GridLayout(1,9));
 		cardBar4.setLayout(new GridLayout(1,9));
 		cardBar5.setLayout(new GridLayout(1,14));
-		
-		
-		// Creates buttons out of each card from png files
-		// Blue Buttons
-		JButton cardSlotb0 = new JButton(new ImageIcon(((new ImageIcon(cardB0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb1 = new JButton(new ImageIcon(((new ImageIcon(cardB1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb2 = new JButton(new ImageIcon(((new ImageIcon(cardB2).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb3 = new JButton(new ImageIcon(((new ImageIcon(cardB3).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb4 = new JButton(new ImageIcon(((new ImageIcon(cardB4).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb5 = new JButton(new ImageIcon(((new ImageIcon(cardB5).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb6 = new JButton(new ImageIcon(((new ImageIcon(cardB6).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb7 = new JButton(new ImageIcon(((new ImageIcon(cardB7).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb8 = new JButton(new ImageIcon(((new ImageIcon(cardB8).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb9 = new JButton(new ImageIcon(((new ImageIcon(cardB9).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		// Red Buttons
-		JButton cardSlotr0 = new JButton(new ImageIcon(((new ImageIcon(cardR0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr1 = new JButton(new ImageIcon(((new ImageIcon(cardR1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr2 = new JButton(new ImageIcon(((new ImageIcon(cardR2).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr3 = new JButton(new ImageIcon(((new ImageIcon(cardR3).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr4 = new JButton(new ImageIcon(((new ImageIcon(cardR4).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr5 = new JButton(new ImageIcon(((new ImageIcon(cardR5).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr6 = new JButton(new ImageIcon(((new ImageIcon(cardR6).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr7 = new JButton(new ImageIcon(((new ImageIcon(cardR7).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr8 = new JButton(new ImageIcon(((new ImageIcon(cardR8).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr9 = new JButton(new ImageIcon(((new ImageIcon(cardR9).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		// Green Buttons
-		JButton cardSlotg0 = new JButton(new ImageIcon(((new ImageIcon(cardG0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg1 = new JButton(new ImageIcon(((new ImageIcon(cardG1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg2 = new JButton(new ImageIcon(((new ImageIcon(cardG2).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg3 = new JButton(new ImageIcon(((new ImageIcon(cardG3).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg4 = new JButton(new ImageIcon(((new ImageIcon(cardG4).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg5 = new JButton(new ImageIcon(((new ImageIcon(cardG5).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg6 = new JButton(new ImageIcon(((new ImageIcon(cardG6).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg7 = new JButton(new ImageIcon(((new ImageIcon(cardG7).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg8 = new JButton(new ImageIcon(((new ImageIcon(cardG8).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg9 = new JButton(new ImageIcon(((new ImageIcon(cardG9).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		// Yellow Buttons
-		JButton cardSloty0 = new JButton(new ImageIcon(((new ImageIcon(cardY0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty1 = new JButton(new ImageIcon(((new ImageIcon(cardY1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty2 = new JButton(new ImageIcon(((new ImageIcon(cardY2).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty3 = new JButton(new ImageIcon(((new ImageIcon(cardY3).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty4 = new JButton(new ImageIcon(((new ImageIcon(cardY4).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty5 = new JButton(new ImageIcon(((new ImageIcon(cardY5).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty6 = new JButton(new ImageIcon(((new ImageIcon(cardY6).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty7 = new JButton(new ImageIcon(((new ImageIcon(cardY7).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty8 = new JButton(new ImageIcon(((new ImageIcon(cardY8).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty9 = new JButton(new ImageIcon(((new ImageIcon(cardY9).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		// Special Cards
-		JButton cardSlotb10 = new JButton(new ImageIcon(((new ImageIcon(cardB10).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb11 = new JButton(new ImageIcon(((new ImageIcon(cardB11).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotb12 = new JButton(new ImageIcon(((new ImageIcon(cardB12).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr10 = new JButton(new ImageIcon(((new ImageIcon(cardR10).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr11 = new JButton(new ImageIcon(((new ImageIcon(cardR11).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotr12 = new JButton(new ImageIcon(((new ImageIcon(cardR12).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg10 = new JButton(new ImageIcon(((new ImageIcon(cardG10).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg11 = new JButton(new ImageIcon(((new ImageIcon(cardG11).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotg12 = new JButton(new ImageIcon(((new ImageIcon(cardG12).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty10 = new JButton(new ImageIcon(((new ImageIcon(cardY10).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty11 = new JButton(new ImageIcon(((new ImageIcon(cardY11).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSloty12 = new JButton(new ImageIcon(((new ImageIcon(cardY12).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotx1 = new JButton(new ImageIcon(((new ImageIcon(cardX1).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		JButton cardSlotx0 = new JButton(new ImageIcon(((new ImageIcon(cardX0).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
-		
-	
 
 		// Add btn to main panel
 		btnBarMain.add(closeHand);
@@ -497,16 +475,14 @@ public class PlayerHandGUI extends JFrame {
 		if (playersHand.contains("Wild Card"))
 		{
 			cardBar5.add(cardSlotx0);
+			
 		}
 		if (playersHand.contains("Wild Draw 4"))
 		{
 			cardBar5.add(cardSlotx1);
 		}
 		
-		
-		
-		
-		
+		addActionListeners();
 		//builds the player hand display
 		mainPanel.add(leftPanel);
 		mainPanel.add(rightPanel);
@@ -514,9 +490,108 @@ public class PlayerHandGUI extends JFrame {
 		add(mainPanel);
 		
 	}
-
+	public void addActionListeners()
+	{	
+		cardSlotb0.addActionListener(new cardPlayedActionListener());
+		cardSlotb1.addActionListener(new cardPlayedActionListener());
+		cardSlotb2.addActionListener(new cardPlayedActionListener());
+		cardSlotb3.addActionListener(new cardPlayedActionListener());
+		cardSlotb4.addActionListener(new cardPlayedActionListener());
+		cardSlotb5.addActionListener(new cardPlayedActionListener());
+		cardSlotb6.addActionListener(new cardPlayedActionListener());
+		cardSlotb7.addActionListener(new cardPlayedActionListener());
+		cardSlotb8.addActionListener(new cardPlayedActionListener());
+		cardSlotb9.addActionListener(new cardPlayedActionListener());
+		cardSlotb10.addActionListener(new cardPlayedActionListener());
+		cardSlotb11.addActionListener(new cardPlayedActionListener());
+		cardSlotb12.addActionListener(new cardPlayedActionListener());
+		
+		cardSlotr0.addActionListener(new cardPlayedActionListener());
+		cardSlotr1.addActionListener(new cardPlayedActionListener());
+		cardSlotr2.addActionListener(new cardPlayedActionListener());
+		cardSlotr3.addActionListener(new cardPlayedActionListener());
+		cardSlotr4.addActionListener(new cardPlayedActionListener());
+		cardSlotr5.addActionListener(new cardPlayedActionListener());
+		cardSlotr6.addActionListener(new cardPlayedActionListener());
+		cardSlotr7.addActionListener(new cardPlayedActionListener());
+		cardSlotr8.addActionListener(new cardPlayedActionListener());
+		cardSlotr9.addActionListener(new cardPlayedActionListener());
+		cardSlotr10.addActionListener(new cardPlayedActionListener());
+		cardSlotr11.addActionListener(new cardPlayedActionListener());
+		cardSlotr12.addActionListener(new cardPlayedActionListener());
+	
+		cardSlotg0.addActionListener(new cardPlayedActionListener());
+		cardSlotg1.addActionListener(new cardPlayedActionListener());
+		cardSlotg2.addActionListener(new cardPlayedActionListener());
+		cardSlotg3.addActionListener(new cardPlayedActionListener());
+		cardSlotg4.addActionListener(new cardPlayedActionListener());
+		cardSlotg5.addActionListener(new cardPlayedActionListener());
+		cardSlotg6.addActionListener(new cardPlayedActionListener());
+		cardSlotg7.addActionListener(new cardPlayedActionListener());
+		cardSlotg8.addActionListener(new cardPlayedActionListener());
+		cardSlotg9.addActionListener(new cardPlayedActionListener());
+		cardSlotg10.addActionListener(new cardPlayedActionListener());
+		cardSlotg11.addActionListener(new cardPlayedActionListener());
+		cardSlotg12.addActionListener(new cardPlayedActionListener());
+		
+		cardSloty0.addActionListener(new cardPlayedActionListener());
+		cardSloty1.addActionListener(new cardPlayedActionListener());
+		cardSloty2.addActionListener(new cardPlayedActionListener());
+		cardSloty3.addActionListener(new cardPlayedActionListener());
+		cardSloty4.addActionListener(new cardPlayedActionListener());
+		cardSloty5.addActionListener(new cardPlayedActionListener());
+		cardSloty6.addActionListener(new cardPlayedActionListener());
+		cardSloty7.addActionListener(new cardPlayedActionListener());
+		cardSloty8.addActionListener(new cardPlayedActionListener());
+		cardSloty9.addActionListener(new cardPlayedActionListener());
+		cardSloty10.addActionListener(new cardPlayedActionListener());
+		cardSloty11.addActionListener(new cardPlayedActionListener());
+		cardSloty12.addActionListener(new cardPlayedActionListener());
+		
+		cardSlotx1.addActionListener(new cardPlayedActionListener());
+		cardSlotx0.addActionListener(new cardPlayedActionListener());
+	}
 
 	
+
+	public class cardPlayedActionListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent p)
+		{
+			String pick = p.getActionCommand();
+
+			// Only adds string version of card to pile. need to add Card object to hand as well
+			playPileStr.add(pick);
+
+			
+			
+
+		}
+		
+	}
+	public class DrawActionListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			boolean flip = false;
+			// Adds String Version of card to deck
+			newHand.add(deck.get(0));
+			playersHand.clear();
+			for (Card objects : newHand)
+			{
+				playersHand.add(objects.toString());
+			}
+
+			
+			
+
+			
+			
+			
+			
+			
+		}
+	}
 	public class QuitListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)

@@ -2,25 +2,13 @@ import java.util.ArrayList;
 //package cards.functions;
 public class Board implements DefaultRules{
 	
-	// Test deck
-	private ArrayList<Card> testDeck;
-	
-	
 	private ArrayList<Card> deck;
 	private ArrayList<Card> discardPile;
 	private Card currentPlayedCard;
-	
-	
 
-	
-	
 	//accessors
 	public ArrayList<Card> getDeck() {
 		return this.deck;
-	}
-	public ArrayList<Card> getTestDeck()
-	{
-		return this.testDeck;
 	}
 	
 	public void shuffle() {
@@ -183,7 +171,6 @@ public class Board implements DefaultRules{
 		this.deck = new ArrayList<Card>();
 		this.discardPile = new ArrayList<Card>();
 		this.currentPlayedCard = new Card(1, 1);
-
 
 	}
 	

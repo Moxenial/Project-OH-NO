@@ -6,20 +6,43 @@ public class Player {
 	private int numPlayers;
 	private ArrayList<Card> deck;
 	private ArrayList<Card> discardPile = new ArrayList<Card>(108);
-	
+
 	// Player arrayList for each players hand
 	private ArrayList<Card> playerNum_1 = new ArrayList<Card>(30);
 	private ArrayList<Card> playerNum_2 = new ArrayList<Card>(30);
 	private ArrayList<Card> playerNum_3 = new ArrayList<Card>(30);
 	private ArrayList<Card> playerNum_4 = new ArrayList<Card>(30);	
+	private int currentPlayer;
+	private boolean isPlayOrderClockwise = true;
 	
-	public Player(ArrayList<Card> GUIDeck, int GUInumPlayers)
+	public Player(int PlayerOrder)
 	{
-		numPlayers = GUInumPlayers;
-		deck = GUIDeck;
-		dealHand(GUInumPlayers, GUIDeck);
-	}
+		
+		// After deck is created once here, it is then only used from the player class
+		// because the player class contains all of the moves for now.
+		// Basically the player class and the OhNoGUI need to constantly intereact
+		// and update each others decks.
+		
+		Board cardsBoard = new Board();
+		cardsBoard.generateStandardDeck();
+		deck = cardsBoard.getDeck();
+		dealHand(numPlayers, deck);
 	
+	
+
+		
+
+
+	}
+
+	public void setDeck(ArrayList<Card> startDeck)
+	{
+		deck = startDeck;
+	}
+	public void setPlayerCount(int playerCount)
+	{
+		numPlayers = playerCount;
+	}
 	
 	public ArrayList<Card> getDeck()
 	{
@@ -41,7 +64,27 @@ public class Player {
 	{
 		return playerNum_4;
 	}
+	
 
+	// if reverse is played set boolean isPlayOrder Clockwise to flase
+	public void advanceTurn() {
+		
+		if(isPlayOrderClockwise) {
+			if(currentPlayer > numPlayers)
+				currentPlayer = 1;
+			else
+				currentPlayer++;
+		}
+		else{
+			if(currentPlayer == 0)
+				currentPlayer = numPlayers;
+			else
+				currentPlayer--;
+		}
+		
+	}
+	
+	
 	
 	
 	
@@ -120,7 +163,7 @@ public class Player {
 	}
 	
 	// Takes card from deck and moves it to the players hand then removes it from the deck ArrayList
-	public void deckToHand(int playerTurnNum)
+	public void drawCard(int playerTurnNum)
 	{
 		int drawPile = deck.size();
 		if (playerTurnNum ==1)
@@ -148,37 +191,8 @@ public class Player {
 			playerNum_4.add(0, transfer);
 			deck.remove(0);
 		}
-
-		// Print to console for testing
-		System.out.println(playerNum_1);
-		System.out.println(deck);
 	}
-	
-	// Alternate to deckToHand() Takes card drawn from pile and the current players number and adds card to players hand
-	public void drawCard(Card drawnCard, int playerTurnNum)
-	{
 
-		if (playerTurnNum ==1)
-		{
-			playerNum_1.add(drawnCard);
-		}
-		else if (playerTurnNum == 2)
-		{
-			playerNum_2.add(drawnCard);
-		}
-		else if (playerTurnNum ==3)
-		{
-			playerNum_3.add(drawnCard);
-		}
-		else if (playerTurnNum == 4)
-		{
-			playerNum_4.add(drawnCard);
-		}
-
-		// Print to console for testing
-		System.out.println(playerNum_1);
-		System.out.println(deck);
-	}
 	
 	// Takes the card from the player and compares it against the discard pile, if it cant be played it will have to ask the user to play another
 	// Unfinished
@@ -245,51 +259,5 @@ public class Player {
 	}
 	
 
-
-	// Displays the players hands for checking cards
-	public void getPlayerHand(int playerNum)
-	{
-		if (playerNum == 2)
-		{
-			System.out.println(playerNum_1);
-			System.out.println(playerNum_2);
-		}
-		else if (playerNum == 3)
-		{
-			System.out.println(playerNum_1);
-			System.out.println(playerNum_2);
-			System.out.println(playerNum_3);
-		}
-		else if (playerNum == 4)
-		{
-			System.out.println(playerNum_1);
-			System.out.println(playerNum_2);
-			System.out.println(playerNum_3);
-			System.out.println(playerNum_4);
-		}
-	}
-	
-
-	// Runs the game, will need structure for game operation
-	public void gameRunning(int playerNum)
-	{
-		// temp number of players
-		int numOfPlayers = 2;
-		
-		//Creates Objects of Player and Board to interact for game play
-		//Player player = new Player();
-		//player.setDeck(deck);
-		//System.out.println(deck);
-		
-
-		
-		
-		
-		//player.dealHand(numOfPlayers, cards.getDeck());
-		//System.out.println("\nThis is where the game starts\n ");
-		//player.getPlayerHand(numOfPlayers);
-		
-		
-	}
 
 }
