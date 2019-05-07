@@ -1,4 +1,8 @@
 # Changelog
+
+* 5/7
+  * Multiple revisions added.
+
 * 4/30
   * Facedown card added to /cards/ .
   
