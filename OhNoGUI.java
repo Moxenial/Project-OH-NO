@@ -1,22 +1,168 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
-public class OhNoGUI extends JFrame {
+public class OhNoGUI extends JFrame implements DefaultRules{
 
-	// practice gui build #1
-		public static final int WIDTH = 600;
-		public static final int HEIGHT = 400;
-		public static final int ROWS = 3;
-		public static final int COLUMNS = 2;
 
+	private boolean turnFinished;
+	private boolean isPlayOrderClockwise;
+	
+	public static final int WIDTH = 600;
+	public static final int HEIGHT = 400;
+	public static final int ROWS = 3;
+	public static final int COLUMNS = 2;
+	private JTextField playerCountEntry = new JTextField(3);
+	private int numPlayers;
+	private int currentPlayer;
+	private Board board;
+	//private ArrayList<Card> deck = new ArrayList<Card>();
+	private ArrayList<Card> playPile = new ArrayList<Card>();
+	
+	private ArrayList<Player> player = new ArrayList<Player>();
+	
+	// This should be to build the start of the game, who goes first,
+	// deal out a hand, get everyone hands and set  the first play card.
+	// Thinking the arraylists need to be able to be static referenced through the different class
+	// for consisitencey.
+	
+	public void initialDealing() {
+		player.clear();
+		if(numPlayers == 2) {
+			player.add(new Player(1));
+			player.add(new Player(2));
+			for(int x = 0; x < STARTINGHAND; ++x) {
+				player.get(0).addCard(board.drawCard());
+				player.get(1).addCard(board.drawCard());
+			}
+		}
+		else if(numPlayers == 3) {
+
+			player.add(new Player(1));
+			player.add(new Player(2));
+			player.add(new Player(3));
+			for(int x = 0; x < STARTINGHAND; ++x) {
+				player.get(0).addCard(board.drawCard());
+				player.get(1).addCard(board.drawCard());
+				player.get(2).addCard(board.drawCard());
+			}
+		}
+		else if(numPlayers == 4) {
+
+			player.add(new Player(1));
+			player.add(new Player(2));
+			player.add(new Player(3));
+			player.add(new Player(4));
+			for(int x = 0; x < STARTINGHAND; ++x) {
+				player.get(0).addCard(board.drawCard());
+				player.get(1).addCard(board.drawCard());
+				player.get(2).addCard(board.drawCard());
+				player.get(3).addCard(board.drawCard());
+			}
+		}
+		System.out.println("Player ArrayList size: " + player.size());
+	}
+	
+	
+	public void drawCard() {
 		
-		public OhNoGUI()
+		player.get(currentPlayer - 1).addCard(board.drawCard());
+		
+	}
+	
+	public void playCard(Card playedCard) {
+		if(playedCard.getColor() == 0 && playedCard.getValue() == 0)
+			wildRules();
+		if(playedCard.getColor() == 0 && playedCard.getValue() == 0)
+			wildDraw4Rules();
+	}
+
+	private void wildRules() {
+		// TODO Auto-generated method stub
+		int c = (int) (Math.random() * 4);
+		if(c == 0) {
+			board.getTopCard();
+		}
+	}
+	private void wildDraw4Rules() {
+		// TODO Auto-generated method stub
+		// maybe for time's sake, make it randomly select a color
+		
+	}
+	private void skipRules() {
+		// TODO Auto-generated method stub
+		// maybe for time's sake, make it randomly select a color
+	}
+	private void draw2Rules() {
+		// TODO Auto-generated method stub
+		// maybe for time's sake, make it randomly select a color
+	}
+	private void reverseRules() {
+		
+		// TODO Auto-generated method stub
+		// maybe for time's sake, make it randomly select a color
+	}
+
+
+	// if reverse is played set boolean isPlayOrder Clockwise to false
+	public void advanceTurn() {
+		
+		if(isPlayOrderClockwise) {
+			if(currentPlayer > numPlayers)
+				currentPlayer = 1;
+			else
+				currentPlayer++;
+		}
+		else{
+			if(currentPlayer == 0)
+				currentPlayer = numPlayers;
+			else
+				currentPlayer--;
+		}
+		
+	}
+	public void gameBuilder()
+	{
+		currentPlayer = 1;
+		
+		board = new Board();
+		board.addToPile(board.drawCard());
+		System.out.println("Deck size is: " + board.getDeck().size());
+		System.out.println("Top card: " + board.getTopCard().toString());
+		initialDealing();
+		
+		//update GUI with top card
+		
+
+	}
+	
+	//maybe delete
+	public void gameRunning()
+	{
+		// get the first player
+		currentPlayer = 1;
+		// Show current players number in the BOARD GUI
+		// gets initial card for play pile
+		
+		
+
+		// player goes
+		
+		//updateBoard();
+		// add players played card to play pile
+		
+		// How do we update the decks of each player
+		
+		
+	}
+	
+	public OhNoGUI()
 		{
 			super();
 			setSize(WIDTH, HEIGHT);
 			
-			setTitle("Oh-No! UNO for your Computer!");
+			setTitle("OH-NO: UNO for your Computer!");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 			setLayout(new BorderLayout());
@@ -107,44 +253,32 @@ public class OhNoGUI extends JFrame {
 			
 	}
 
+	public class playerCount extends JFrame
+	{
+		private static final int WIDTH = 500;
+		private static final int HEIGHT = 300;
+		private JPanel playerMain = new JPanel();
+		private JLabel header = new JLabel("How many people will be playing? 2-4 Players");
+		private JButton enterPlayer = new JButton("Play");
+		
+		playerCount()
+		{
+			super("How many players?");
+			setSize(WIDTH, HEIGHT);
+			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
+			setLayout(new BorderLayout());
+			
+			header.setFont(new Font("Tahoma", Font.BOLD, 20));
+			playerMain.add(header, BorderLayout.NORTH);
+			playerMain.add(playerCountEntry, BorderLayout.CENTER);
+			playerMain.add(enterPlayer, BorderLayout.SOUTH);
+			enterPlayer.addActionListener(new EnterPlayerListener());
+			
+			// needs to send number of players to other parts of the program
 
-	public class OhNoQuitListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			System.exit(0);
-		}
-	}
-	public class OhNoPlayListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			// Starts a game between two people
-			int numOfPlayers = 2;
-			Player playing = new Player();
-
-			playing.gameRunning(numOfPlayers, playing);
-			
-			
-			
-			
-			
-			
-			
-			
-			// Sets boardGUi to visible
-			boardGUI game = new boardGUI();
-			game.frame.setVisible(true);
-			
-		}
-	}
-	public class OhNoRulesListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			// Goes to rulebook
-			RuleBook ruleDisplay = new RuleBook();
-			ruleDisplay.setVisible(true);
+			//numPlayers holds number of players;
+			add(playerMain);
 		}
 	}
 
@@ -198,8 +332,6 @@ public class OhNoGUI extends JFrame {
 
 	}
 	
-	
-	
 	public class boardGUI extends JFrame
 	{
 		private static final int WIDTH = 1200;
@@ -230,8 +362,6 @@ public class OhNoGUI extends JFrame {
 			btnQuitGame.addActionListener(new OhNoQuitListener());
 			ButtonPanel.add(btnQuitGame);
 			
-			
-			
 			JPanel BoardPanel = new JPanel();
 			frame.getContentPane().add(BoardPanel, BorderLayout.CENTER);
 			BoardPanel.setLayout(new GridLayout(9, 1, 0, 0));
@@ -251,6 +381,7 @@ public class OhNoGUI extends JFrame {
 			JPanel panel_3 = new JPanel();
 			panel_3.setBackground(Color.BLACK);
 			row1panel.add(panel_3);
+
 			
 			JLabel lblOhno = new JLabel("OH-NO");
 			lblOhno.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -346,7 +477,7 @@ public class OhNoGUI extends JFrame {
 			playPile_Upper_panel.setBackground(Color.GRAY);
 			row3panel.add(playPile_Upper_panel);
 			
-			JLabel lblPlayPile = new JLabel("OH-NO");
+			JLabel lblPlayPile = new JLabel("Play Pile");
 			lblPlayPile.setFont(new Font("Tahoma", Font.BOLD, 20));
 			lblPlayPile.setForeground(Color.RED);
 			lblPlayPile.setBackground(Color.BLACK);
@@ -399,6 +530,7 @@ public class OhNoGUI extends JFrame {
 			playPile_Bottom_panel.setBackground(Color.GRAY);
 			row4panel.add(playPile_Bottom_panel);
 			
+			// Change to add current card to play pile with image
 			JLabel lblPlayPileBottom = new JLabel("OH-NO");
 			lblPlayPileBottom.setFont(new Font("Tahoma", Font.BOLD, 20));
 			lblPlayPileBottom.setForeground(Color.RED);
@@ -418,23 +550,41 @@ public class OhNoGUI extends JFrame {
 			panel_44.setBackground(Color.WHITE);
 			row4panel.add(panel_44);
 			
+			
+			
+			// Label for next Player
 			JPanel row5panel = new JPanel();
-			row5panel.setBackground(Color.WHITE);
+			row5panel.setBackground(Color.DARK_GRAY);
+			JLabel playerTurnLbl = new JLabel("Player # goes: ");
+			row5panel.add(playerTurnLbl);
 			BoardPanel.add(row5panel);
 			
+			
+			// Display player Number
 			JPanel row6panel = new JPanel();
-			row6panel.setBackground(Color.WHITE);
+			row6panel.setBackground(Color.LIGHT_GRAY);
+			// Change to text area later
+			JLabel playerNumLbl = new JLabel("1,2,3,4");
+			row6panel.add(playerNumLbl);
 			BoardPanel.add(row6panel);
+			
+			
+			
+			
+			
 			
 			JPanel row7panel = new JPanel();
 			row7panel.setBackground(Color.WHITE);
 			BoardPanel.add(row7panel);
 			
-			
 			// Blank row
 			JPanel row8panel = new JPanel();
 			BoardPanel.add(row8panel);
 			row8panel.setLayout(new GridLayout(1, 9, 0, 0));
+			
+			
+			
+			
 			
 			JPanel panel_18 = new JPanel();
 			panel_18.setBackground(Color.WHITE);
@@ -492,7 +642,7 @@ public class OhNoGUI extends JFrame {
 			player1.setBackground(Color.LIGHT_GRAY);
 			bottomPanel.add(player1);
 			JButton player1btn = new JButton("Player 1's Hand");
-			player1btn.addActionListener(new playerHand1());
+			player1btn.addActionListener(new playerHand());
 			player1.add(player1btn);
 			
 			JPanel player2 = new JPanel();
@@ -500,6 +650,7 @@ public class OhNoGUI extends JFrame {
 			bottomPanel.add(player2);
 			JButton player2btn = new JButton("Player 2's Hand");
 			//player2btn.addActionListener(new OhNoPlayerHand());
+			player2btn.addActionListener(new playerHand());
 			player2.add(player2btn);
 			
 			JPanel player3 = new JPanel();
@@ -507,6 +658,7 @@ public class OhNoGUI extends JFrame {
 			bottomPanel.add(player3);
 			JButton player3btn = new JButton("Player 3's Hand");
 			//player3btn.addActionListener(new OhNoPlayerHand());
+			player3btn.addActionListener(new playerHand());
 			player3.add(player3btn);
 			
 			JPanel player4 = new JPanel();
@@ -514,6 +666,7 @@ public class OhNoGUI extends JFrame {
 			bottomPanel.add(player4);
 			JButton player4btn = new JButton("Player 4's Hand");
 			//player4btn.addActionListener(new OhNoPlayerHand());
+			player4btn.addActionListener(new playerHand());
 			player4.add(player4btn);
 
 			JPanel panel_15 = new JPanel();
@@ -529,13 +682,84 @@ public class OhNoGUI extends JFrame {
 
 }
 
-	public class playerHand1 implements ActionListener
+	public class playerHand implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
-		{		
-			PlayerHandGUI playerHand1 = new PlayerHandGUI();
+		{	/*	
+			String playerChoice = e.getActionCommand();
+			if (playerChoice == "Player 1's Hand")
+			{
+			PlayerHandGUI playerHand1 = new PlayerHandGUI(deck, player.get(0).getHand());
 			playerHand1.setVisible(true);
+			}
+			else if (playerChoice == "Player 2's Hand")
+			{
+				PlayerHandGUI playerHand2 = new PlayerHandGUI(deck, player.get(1).getHand());
+				playerHand2.setVisible(true);
+			}
+			else if (playerChoice == "Player 3's Hand")
+			{
+				if(numPlayers == 3)
+				{
+					PlayerHandGUI playerHand3 = new PlayerHandGUI(deck, player.get(2).getHand());
+					playerHand3.setVisible(true);
+				}
+			}
+			else if (playerChoice == "Player 4's Hand")
+			{
+				if(numPlayers == 4)
+				{
+					PlayerHandGUI playerHand4 = new PlayerHandGUI(deck, player.get(3).getHand());
+					playerHand4.setVisible(true);
+				}
+			}
+		*/
 		}
 	}
 
+	public class EnterPlayerListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			int numOfPlayers = 0;
+			String userStr = playerCountEntry.getText();
+			if(Integer.parseInt(userStr) >= 2 && Integer.parseInt(userStr) <= 4)
+			{
+				numOfPlayers = Integer.parseInt(userStr);
+				numPlayers = numOfPlayers;
+				
+				System.out.println("NumPlayers: " + numPlayers);
+				
+				gameBuilder();
+				// Sets boardGUi to visible
+				boardGUI game = new boardGUI();
+				game.frame.setVisible(true);
+			}
+		}
+	}
+
+	public class OhNoQuitListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			System.exit(0);
+		}
+	}
+	public class OhNoPlayListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			playerCount players = new playerCount();
+			players.setVisible(true);
+		}
+	}
+	public class OhNoRulesListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			// Goes to rulebook
+			RuleBook ruleDisplay = new RuleBook();
+			ruleDisplay.setVisible(true);
+		}
+	}
 }

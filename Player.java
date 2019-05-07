@@ -1,24 +1,64 @@
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements DefaultRules {
 	
 	// Creates an array list for the players hand
+	private int playerNumber;
 	
-	private ArrayList<Card> deck;
-	private ArrayList<Card> discardPile = new ArrayList<Card>(108);
-	
+	private ArrayList<Card> hand = new ArrayList<Card>(STARTINGHAND);
+	//private ArrayList<Card> deck;
+	//private ArrayList<Card> discardPile = new ArrayList<Card>(DECKSIZE);
+
 	// Player arrayList for each players hand
-	private ArrayList<Card> playerNum_1 = new ArrayList<Card>(30);
+	
+	/*private ArrayList<Card> playerNum_1 = new ArrayList<Card>(30);
 	private ArrayList<Card> playerNum_2 = new ArrayList<Card>(30);
 	private ArrayList<Card> playerNum_3 = new ArrayList<Card>(30);
-	private ArrayList<Card> playerNum_4 = new ArrayList<Card>(30);	
+	private ArrayList<Card> playerNum_4 = new ArrayList<Card>(30);	*/
+	
+	private int currentPlayer;
+	private boolean isPlayOrderClockwise = true;
+	
+	public ArrayList<Card> getHand() {
+		return this.hand;
+	}
+	
+	public void setHand(ArrayList<Card> hand) {
+		this.hand.clear();
+		this.hand = hand;
+	}
+	
+	public Player(int playerNumber)
+	{
+		this.playerNumber = playerNumber; //this tells the player object which order it's supposed to go in.
+		
+		// After deck is created once here, it is then only used from the player class
+		// because the player class contains all of the moves for now.
+		// Basically the player class and the OhNoGUI need to constantly intereact
+		// and update each others decks.
+		
+		Board cardsBoard = new Board();
+		cardsBoard.generateStandardDeck();
+		//deck = cardsBoard.getDeck();
+		//dealHand(numPlayers, deck);
+	
 	
 
+		
 
+
+	}
+	
+	
+	
+	
+	
+	
 	// Arguements dealHand(ArrayList<Card> deck)
+	/*
 	public void dealHand(int playerNumber, ArrayList<Card> deck)
 	{
-		int NUM_PLAYERS = playerNumber;
+		int NUM_PLAYERS = numPlayers;
 		int FIRST_DEAL = 7;
 		int DECK_SIZE = 108;
 		// Elements start at 0
@@ -86,13 +126,14 @@ public class Player {
 
 		
 		
-	}
+	}*/
 	
 	// Takes card from deck and moves it to the players hand then removes it from the deck ArrayList
-	public void deckToHand(int playerTurnNum)
+	public void addCard(Card card)
 	{
-		int drawPile = deck.size();
-		if (playerTurnNum ==1)
+		this.hand.add(card);
+		//int drawPile = deck.size();
+		/*if (playerTurnNum ==1)
 		{
 			Card transfer = deck.get(drawPile);
 			playerNum_1.add(0, transfer);
@@ -116,40 +157,13 @@ public class Player {
 			Card transfer = deck.get(drawPile);
 			playerNum_4.add(0, transfer);
 			deck.remove(0);
-		}
-
-		// Print to console for testing
-		System.out.println(playerNum_1);
-		System.out.println(deck);
+		}*/
 	}
-	
-	// Alternate to deckToHand() Takes card drawn from pile and the current players number and adds card to players hand
-	public void drawCard(Card drawnCard, int playerTurnNum)
-	{
 
-		if (playerTurnNum ==1)
-		{
-			playerNum_1.add(drawnCard);
-		}
-		else if (playerTurnNum == 2)
-		{
-			playerNum_2.add(drawnCard);
-		}
-		else if (playerTurnNum ==3)
-		{
-			playerNum_3.add(drawnCard);
-		}
-		else if (playerTurnNum == 4)
-		{
-			playerNum_4.add(drawnCard);
-		}
-
-		// Print to console for testing
-		System.out.println(playerNum_1);
-		System.out.println(deck);
-	}
 	
 	// Takes the card from the player and compares it against the discard pile, if it cant be played it will have to ask the user to play another
+	// Unfinished
+	/*
 	public void playCard(Card playedCard)
 	{
 		
@@ -163,13 +177,13 @@ public class Player {
 		
 		
 
-	}
+	}*/
 	
 	// Checks player hand for Oh-No, currently prints to console but will need to allow Oh-No button to be clicked in GUI
 	public void ohnoCheck(int playerTurnNum)
 	{
 
-		
+		/*
 		if ( playerTurnNum == 1)
 		{
 			int ohnoCheck = playerNum_1.size();
@@ -209,62 +223,10 @@ public class Player {
 			}
 			else if (ohnoCheck != 1)
 				System.out.println("Not uno yet");
-		}
+		}*/
 	}
+
 	
 
-
-	// Displays the players hands for checking cards
-	public void getPlayerHand(int playerNum)
-	{
-		if (playerNum == 2)
-		{
-			System.out.println(playerNum_1);
-			System.out.println(playerNum_2);
-		}
-		else if (playerNum == 3)
-		{
-			System.out.println(playerNum_1);
-			System.out.println(playerNum_2);
-			System.out.println(playerNum_3);
-		}
-		else if (playerNum == 4)
-		{
-			System.out.println(playerNum_1);
-			System.out.println(playerNum_2);
-			System.out.println(playerNum_3);
-			System.out.println(playerNum_4);
-		}
-	}
-	
-	// Runs the game, will need structure for game operation
-	public void gameRunning(int playerNum, Player game)
-	{
-		// Start
-		// Get total players
-		// First Player goes first...duhhh
-		int firstPlayer = 1;
-		
-		//Creates Objects of Player and Board to interact for game play
-		//Player game = new Player();
-		Board cards = new Board();
-		
-		// Need to connect to GUI
-		int totalPlayers = playerNum;
-		
-		cards.generateStandardDeck();
-		
-		game.dealHand(totalPlayers, cards.getDeck());
-		System.out.println("\nThis is where the game starts\n ");
-		game.getPlayerHand(totalPlayers);
-
-
-		
-		
-		
-		
-		
-		
-	}
 
 }

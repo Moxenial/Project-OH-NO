@@ -1,14 +1,29 @@
 import java.util.ArrayList;
 //package cards.functions;
-public class Board implements DefaultRules{
+public class Board implements DefaultRules {
 	
 	private ArrayList<Card> deck;
 	private ArrayList<Card> discardPile;
-	private Card currentPlayedCard;
-	
+	//private Card currentCard;
+
 	//accessors
 	public ArrayList<Card> getDeck() {
 		return this.deck;
+	}
+	
+	
+	public Card getTopCard() {
+		return this.discardPile.get(0);
+	}
+	public void addToPile(Card card) {
+		discardPile.add(0, card);
+	}
+	
+	
+	public Card drawCard() { //WARNING: THIS WILL REMOVE A CARD FROM THE DECK! MAKE SURE TO ADD IT TO WHATEVER YOU'RE RETURNING TO!
+		Card card = new Card(deck.get(0).getColor(), deck.get(0).getValue());
+		deck.remove(0);
+		return card;
 	}
 	
 	public void shuffle() {
@@ -164,11 +179,14 @@ public class Board implements DefaultRules{
 		}
 		shuffle();
 	}
+
 	
 	//default contructor
 	public Board() {
-		this.deck = new ArrayList<Card>();
-		this.discardPile = new ArrayList<Card>();
-		this.currentPlayedCard = new Card(1, 1);
+		this.deck = new ArrayList<Card>(DECKSIZE);
+		this.discardPile = new ArrayList<Card>(1);
+		generateStandardDeck();
+		
 	}
+	
 }
