@@ -1,116 +1,40 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.ListDataListener;
+
 import java.util.ArrayList;
 
-public class OhNoGUI extends JFrame {
+public class OhNoGUI extends JFrame implements DefaultRules {
 
 
 	private boolean turnFinished;
+	private boolean actionTaken;
+	private boolean isPlayOrderClockwise;
 	
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = 400;
 	public static final int ROWS = 3;
 	public static final int COLUMNS = 2;
-	private JTextField playerCountEntry = new JTextField(1);
+	private JTextField playerCountEntry = new JTextField(3);
 	private int numPlayers;
 	private int currentPlayer;
 	private Board board;
 	//private ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Card> playPile = new ArrayList<Card>();
 	
-	private ArrayList<Player> player;
-	/*
-	private ArrayList<Card> playerNum_1 = new ArrayList<Card>();
-	private ArrayList<Card> playerNum_2 = new ArrayList<Card>();
-	private ArrayList<Card> playerNum_3 = new ArrayList<Card>();
-	private ArrayList<Card> playerNum_4 = new ArrayList<Card>();
-	*/
+	private ArrayList<Player> player = new ArrayList<Player>();
 	
 	// This should be to build the start of the game, who goes first,
 	// deal out a hand, get everyone hands and set  the first play card.
 	// Thinking the arraylists need to be able to be static referenced through the different class
 	// for consisitencey.
 	
-	public void drawCard() {
-		
-		player.get(currentPlayer - 1).addCard(board.drawCard());
-		
-	}
 	
-	public void playCard(Card playedCard) {
-		if(playedCard.getColor() == 0)
-			wildRules();
-	}
-
-	private void wildRules() {
-		// TODO Auto-generated method stub
-		// maybe for time's sake, make it randomly select a color
-	}
-	private void wildDraw4Rules() {
-		// TODO Auto-generated method stub
-		// maybe for time's sake, make it randomly select a color
-	}
-	private void skipRules() {
-		// TODO Auto-generated method stub
-		// maybe for time's sake, make it randomly select a color
-	}
-	private void draw2Rules() {
-		// TODO Auto-generated method stub
-		// maybe for time's sake, make it randomly select a color
-	}
-	private void reverseRules() {
-		// TODO Auto-generated method stub
-		// maybe for time's sake, make it randomly select a color
-	}
-	
-	public void gameBuilder()
-	{
-		// first player to go random later
-		//int playerTurn = 1;
-		currentPlayer = 1;
-		
-		/* DEAL CARDS */
-		
-		//Player playing = new Player(playerTurn);
-		//playing.setPlayerCount(numPlayers);
-		//ADD PLAYER COUNTER ELSEWHERE
-		/*
-		playerNum_1 = playing.getPlayer1Hand();
-		playerNum_2 = playing.getPlayer2Hand();
-		playerNum_3 = playing.getPlayer3Hand();
-		playerNum_4 = playing.getPlayer4Hand();*/
-		board = new Board();
-		//deck = playing.getDeck();
-		//playPile.add(deck.get(0));
-		//deck.remove(0);
-		//playing.setDeck(deck);
-		
-
 		
 		
-		
-	}
-	
-	public void gameRunning()
-	{
-		// get the first player
-		currentPlayer = 1;
-		// Show current players number in the BOARD GUI
-		// gets initial card for play pile
-		
-		
-
-		// player goes
-		
-		//updateBoard();
-		// add players played card to play pile
-		
-		// How do we update the decks of each player
-		
-		
-	}
-	
 	public OhNoGUI()
 		{
 			super();
@@ -206,7 +130,316 @@ public class OhNoGUI extends JFrame {
 			
 			
 	}
+	public class boardGUI extends JFrame {
+		private static final int WIDTH = 590;
+		private static final int HEIGHT = 450;
+		private static final int CARDWIDTH = 90;
+		private static final int CARDHEIGHT = 150;
 
+		private JPanel mainPanel = new JPanel();
+		private JPanel northPanel = new JPanel(new GridLayout(1, 3));
+			private JLabel currentPlayerCounter;
+			private JLabel cardCounter;
+			private JLabel deckCounter;
+		private JPanel instructionPanel = new JPanel(new GridLayout(2, 1));
+			private JLabel instruction = new JLabel("Select a card, then press ''End Turn''. Then, press ''Next Player'' to advance to the next player.");
+			private JLabel error = new JLabel();
+		private JPanel centerPanel = new JPanel(new GridLayout(1, 2, 5, 5));
+			private JPanel westPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+			private JLabel topCardLabel = new JLabel("Top Card", SwingConstants.RIGHT);
+				private JLabel topCardHousing;
+				private ImageIcon topCardImage;
+					private String topCardImagePath; 
+				private JLabel drawCardLabel = new JLabel("Draw Card", SwingConstants.RIGHT);
+				private JButton drawCardButton;
+			private JPanel eastPanel = new JPanel(new GridLayout(2, 1, 0, 5));
+				private JPanel eastCenterPanel = new JPanel(new GridLayout(1, 2, 5, 0));
+					private JLabel handLabel = new JLabel("Current Player's Hand");
+					private DefaultComboBoxModel handModel;
+					private JComboBox hand = new JComboBox();
+						private ImageIcon[] cardImages;
+			private JPanel eastSouthPanel = new JPanel(new GridLayout(3, 1, 2, 2));
+				private JButton endTurnButton;
+				private JButton nextPlayerButton;
+				private JButton declareOhnoButton;
+		
+		public void advanceTurn() {
+			
+			if(isPlayOrderClockwise) {
+				if(currentPlayer > numPlayers)
+					currentPlayer = 1;
+				else
+					currentPlayer++;
+			}
+			else{
+				if(currentPlayer == 0)
+					currentPlayer = numPlayers;
+				else
+					currentPlayer--;
+			}
+			updateError(0);
+		}
+		public void initialDealing() {
+			if(numPlayers == 2) {
+				for(int x = 0; x < STARTINGHAND; ++x) {
+					player.get(0).addCard(board.drawCard());
+					player.get(1).addCard(board.drawCard());
+				}
+			}
+			else if(numPlayers == 3) {
+				for(int x = 0; x < STARTINGHAND; ++x) {
+					player.get(0).addCard(board.drawCard());
+					player.get(1).addCard(board.drawCard());
+					player.get(2).addCard(board.drawCard());
+				}
+			}
+			else if(numPlayers == 4) {
+				for(int x = 0; x < STARTINGHAND; ++x) {
+					player.get(0).addCard(board.drawCard());
+					player.get(1).addCard(board.drawCard());
+					player.get(2).addCard(board.drawCard());
+					player.get(3).addCard(board.drawCard());
+				}
+			}
+		}
+		
+		public void drawCard() {
+			player.get(currentPlayer - 1).addCard(board.drawCard());
+		}
+		
+		public void playCard(Card playedCard) {
+			if(playedCard.getColor() == 0 && playedCard.getValue() == 0)
+				wildRules();
+			if(playedCard.getColor() == 0 && playedCard.getValue() == 0)
+				wildDraw4Rules();
+		}
+
+		private void wildRules() {
+			// TODO Auto-generated method stub
+			int c = (int) (Math.random() * 4);
+			if(c == 0) {
+				board.getTopCard();
+			}
+		}
+		private void wildDraw4Rules() {
+			// TODO Auto-generated method stub
+			// maybe for time's sake, make it randomly select a color
+			
+		}
+		private void skipRules() {
+			// TODO Auto-generated method stub
+			// maybe for time's sake, make it randomly select a color
+		}
+		private void draw2Rules() {
+			// TODO Auto-generated method stub
+			// maybe for time's sake, make it randomly select a color
+		}
+		private void reverseRules() {
+			
+			// TODO Auto-generated method stub
+			// maybe for time's sake, make it randomly select a color
+		}
+
+		public void updateHand() {
+			String path;
+			String color = "";
+			String value = "";
+			cardImages = new ImageIcon[player.get(currentPlayer).getHand().size()];
+			for(int i = 0; i < player.get(currentPlayer - 1).getHand().size(); ++i)
+			{
+				if(player.get(0).getHand().get(i).getColor() == 0)
+					color = "x";
+				else if(player.get(0).getHand().get(i).getColor() == 1)
+					color = "r";
+				else if(player.get(0).getHand().get(i).getColor() == 2)
+					color = "y";
+				else if(player.get(0).getHand().get(i).getColor() == 3)
+					color = "g";
+				else if(player.get(0).getHand().get(i).getColor() == 4)
+					color = "b";
+
+				if(player.get(0).getHand().get(i).getColor() == 0)
+					value = "0";
+				else if(player.get(0).getHand().get(i).getValue() == 1)
+					value = "1";
+				else if(player.get(0).getHand().get(i).getValue() == 2)
+					value = "2";
+				else if(player.get(0).getHand().get(i).getValue() == 3)
+					value = "3";
+				else if(player.get(0).getHand().get(i).getValue() == 4)
+					value = "4";
+				else if(player.get(0).getHand().get(i).getValue() == 5)
+					value = "5";
+				else if(player.get(0).getHand().get(i).getValue() == 6)
+					value = "6";
+				else if(player.get(0).getHand().get(i).getValue() == 7)
+					value = "7";
+				else if(player.get(0).getHand().get(i).getValue() == 8)
+					value = "8";
+				else if(player.get(0).getHand().get(i).getValue() == 9)
+					value = "9";
+				else if(player.get(0).getHand().get(i).getValue() == 10)
+					value = "10";
+				else if(player.get(0).getHand().get(i).getValue() == 11)
+					value = "11";
+				else if(player.get(0).getHand().get(i).getValue() == 12)
+					value = "12";
+				path = "cards//" + color + value + ".png";
+				System.out.println("Path: " + path);
+				cardImages[i] = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(CARDWIDTH, CARDHEIGHT, java.awt.Image.SCALE_SMOOTH));
+			}
+			handModel = new DefaultComboBoxModel(cardImages);
+			hand.setModel(handModel);
+			//path = "cards//" + color + value + ".png";
+			repaint();
+		}
+		
+		public void updateError(int code) {
+			if(code == 0)
+				error.setText("");
+			else if(code == 1)
+				error.setText("ERROR: Please pick a card that matches the Play Card's color or face value, play a wild card, or draw a card.");
+			else if(code == 2)
+				error.setText("ERROR: You have already drawn a card and are not allowed to draw another. Please end your turn.");
+			else if(code == 3)
+				error.setText("ERROR: You cannot end your turn without making an action first!");
+		}
+		
+		public void updateTopCardPath() {
+			String color = "";
+			String value = "";
+			if(board.getTopCard().getColor() == 0)
+				color = "x";
+			else if(board.getTopCard().getColor() == 1)
+				color = "r";
+			else if(board.getTopCard().getColor() == 2)
+				color = "y";
+			else if(board.getTopCard().getColor() == 3)
+				color = "g";
+			else if(board.getTopCard().getColor() == 4)
+				color = "b";
+			
+
+			if(board.getTopCard().getValue() == 0)
+				value = "0";
+			else if(board.getTopCard().getValue() == 1)
+				value = "1";
+			else if(board.getTopCard().getValue() == 2)
+				value = "2";
+			else if(board.getTopCard().getValue() == 3)
+				value = "3";
+			else if(board.getTopCard().getValue() == 4)
+				value = "4";
+			else if(board.getTopCard().getValue() == 5)
+				value = "5";
+			else if(board.getTopCard().getValue() == 6)
+				value = "6";
+			else if(board.getTopCard().getValue() == 7)
+				value = "7";
+			else if(board.getTopCard().getValue() == 8)
+				value = "8";
+			else if(board.getTopCard().getValue() == 9)
+				value = "9";
+			else if(board.getTopCard().getValue() == 10)
+				value = "10";
+			else if(board.getTopCard().getValue() == 11)
+				value = "11";
+			else if(board.getTopCard().getValue() == 12)
+				value = "12";
+			else if(board.getTopCard().getValue() == 13)
+				value = "13";
+			else if(board.getTopCard().getValue() == 14)
+				value = "14";
+			
+			topCardImagePath = "cards//" + color + value + ".png";
+			repaint();
+		}
+		
+		public boardGUI() {
+			super("OH-NO");
+			setSize(WIDTH, HEIGHT);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			initialDealing();
+			
+			currentPlayerCounter = new JLabel("", SwingConstants.LEFT);
+			deckCounter = new JLabel("", SwingConstants.CENTER);
+			cardCounter = new JLabel("", SwingConstants.RIGHT);
+			
+			northPanel.add(currentPlayerCounter);
+			northPanel.add(deckCounter);
+			northPanel.add(cardCounter);
+			mainPanel.add(northPanel, BorderLayout.NORTH);
+
+			updateTopCardPath();
+			westPanel.add(topCardLabel);
+			
+			topCardImage = new ImageIcon(topCardImagePath);
+			Image img = topCardImage.getImage().getScaledInstance(CARDWIDTH, CARDHEIGHT, Image.SCALE_SMOOTH);
+			topCardImage = new ImageIcon(img);
+			topCardHousing = new JLabel(topCardImage);
+			
+
+			drawCardButton  = new JButton(new ImageIcon(new ImageIcon("cards//facedown.png").getImage().getScaledInstance(CARDWIDTH, CARDHEIGHT, java.awt.Image.SCALE_SMOOTH)));
+			drawCardButton.addActionListener(new ActionListener() { //Browse
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			
+			westPanel.add(topCardHousing);
+			westPanel.add(drawCardLabel);
+			westPanel.add(drawCardButton);
+			
+			updateHand();
+			eastCenterPanel.add(handLabel);
+			eastCenterPanel.add(hand);
+			centerPanel.add(westPanel);
+			centerPanel.add(eastPanel);
+			mainPanel.add(centerPanel);
+
+			declareOhnoButton = new JButton("Declare OH-NO");
+			declareOhnoButton.addActionListener(new ActionListener() { //Browse
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			endTurnButton = new JButton("End Turn");
+			endTurnButton.addActionListener(new ActionListener() { //Browse
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			nextPlayerButton = new JButton("Next Player");
+			nextPlayerButton.addActionListener(new ActionListener() { //Browse
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			eastSouthPanel.add(declareOhnoButton);
+			eastSouthPanel.add(endTurnButton);
+			eastSouthPanel.add(nextPlayerButton);
+			eastPanel.add(eastCenterPanel);
+			eastPanel.add(eastSouthPanel);
+			instructionPanel.add(instruction);
+			instructionPanel.add(error);
+			mainPanel.add(instructionPanel, BorderLayout.SOUTH);
+			
+			
+			//hand = new JComboBox(cardImages);
+			
+			
+			add(mainPanel);
+			setVisible(true);
+		}
+		public void updateGUI() {
+			String spacer = "             ";
+			currentPlayerCounter.setText("Current Player: " + currentPlayer + " out of " + numPlayers + spacer);
+			deckCounter.setText("Cards Remaining: " + board.getDeck().size());
+			cardCounter.setText(spacer + "You have..." + player.get(currentPlayer - 1).getHand().size() + " cards.");
+		}
+	}
+	
 	public class playerCount extends JFrame
 	{
 		private static final int WIDTH = 500;
@@ -286,7 +519,7 @@ public class OhNoGUI extends JFrame {
 
 	}
 	
-	public class boardGUI extends JFrame
+	/*public class boardGUI extends JFrame
 	{
 		private static final int WIDTH = 1200;
 		private static final int HEIGHT = 900;
@@ -509,7 +742,7 @@ public class OhNoGUI extends JFrame {
 			// Label for next Player
 			JPanel row5panel = new JPanel();
 			row5panel.setBackground(Color.DARK_GRAY);
-			JLabel playerTurnLbl = new JLabel("Player # goes: ");
+			JLabel playerTurnLbl = new JLabel("Current Player");
 			row5panel.add(playerTurnLbl);
 			BoardPanel.add(row5panel);
 			
@@ -518,7 +751,7 @@ public class OhNoGUI extends JFrame {
 			JPanel row6panel = new JPanel();
 			row6panel.setBackground(Color.LIGHT_GRAY);
 			// Change to text area later
-			JLabel playerNumLbl = new JLabel("1,2,3,4");
+			JLabel playerNumLbl = new JLabel("" + currentPlayer);
 			row6panel.add(playerNumLbl);
 			BoardPanel.add(row6panel);
 			
@@ -634,12 +867,12 @@ public class OhNoGUI extends JFrame {
 		}
 		
 
-}
+}*/
 
 	public class playerHand implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
-		{		
+		{	/*	
 			String playerChoice = e.getActionCommand();
 			if (playerChoice == "Player 1's Hand")
 			{
@@ -667,7 +900,7 @@ public class OhNoGUI extends JFrame {
 					playerHand4.setVisible(true);
 				}
 			}
-		
+		*/
 		}
 	}
 
@@ -675,17 +908,21 @@ public class OhNoGUI extends JFrame {
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			int numOfPlayers = 0;
 			String userStr = playerCountEntry.getText();
 			if(Integer.parseInt(userStr) >= 2 && Integer.parseInt(userStr) <= 4)
 			{
-				numOfPlayers = Integer.parseInt(userStr);
-				numPlayers = numOfPlayers;
+				numPlayers = Integer.parseInt(userStr);
+				for(int i = 0; i < numPlayers; ++i)
+					player.add(new Player(i + 1));
 				
-				gameBuilder();
-				// Sets boardGUi to visible
+				currentPlayer = 1;
+				
+				board = new Board();
+				board.addToPile(board.drawCard());
 				boardGUI game = new boardGUI();
-				game.frame.setVisible(true);
+				game.updateGUI();
+				// Sets boardGUi to visible
+				game.setVisible(true);
 			}
 		}
 	}

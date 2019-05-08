@@ -204,7 +204,7 @@ public class PlayerHandGUI extends JFrame implements DefaultRules {
 		// temp must get card and display from board
 		playAndDraw.setLayout(new GridLayout(2,2));
 		String currentCardPlayed = "C:/Users/Nate/Desktop/cards/x0.png";
-		JButton cardSlotPlay = new JButton(new ImageIcon(((new ImageIcon(currentCardPlayed).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)))));
+		JButton cardSlotPlay = new JButton(new ImageIcon(new ImageIcon(currentCardPlayed).getImage().getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH)));
 		playAndDraw.setBackground(Color.WHITE);
 		JLabel playPile = new JLabel("Play Pile");
 		playAndDraw.add(playPile);
